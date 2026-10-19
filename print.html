@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stampa Consegne</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff;
+      font-family: Arial, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /**/
+    #loadingScreen {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #37474f;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 18px; color: #fff;
+    }
+    #loadingScreen .spinner-border { width: 3rem; height: 3rem; }
+    #loadingScreen p { font-size: 1rem; opacity: 0.8; }
+
+    /**/
+    #printBar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+      background: #37474f; color: #fff;
+      display: flex; align-items: center; gap: 16px;
+      padding: 10px 20px; flex-wrap: wrap;
+    }
+    #printBar .bar-back {
+      color: #80cbc4; text-decoration: none; font-size: 0.9rem;
+      display: flex; align-items: center; gap: 4px; white-space: nowrap;
+    }
+    #printBar .bar-back:hover { text-decoration: underline; }
+    #printBar .bar-label { font-size: 0.92rem; font-weight: 600; opacity: 0.85; }
+    #printBar .bar-print-btn {
+      margin-left: auto; background: #80cbc4; color: #263238;
+      border: none; border-radius: 6px; padding: 7px 20px;
+      font-weight: 700; cursor: pointer; font-size: 0.92rem;
+    }
+    #printBar .bar-print-btn:hover { background: #4db6ac; }
+
+    /**/
+    .print-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      border-bottom: 2px solid #000; margin-bottom: 8px; padding-bottom: 4px;
+    }
+    .print-header h2 { font-size: 1.1rem; }
+    .print-header h3 { font-size: 0.9rem; color: #333; }
+
+    /**/
+    .patient-card {
+      border: 2px solid #000; border-radius: 6px; margin-bottom: 3px;
+      background: #fff;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .header-row { border-bottom: 2px solid #000; display: flex; }
+    .bed-number-box {
+      border-right: 2px solid #000; width: 16.66667%; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      background: #f8f9fa !important; padding: 8px;
+    }
+    .bed-label  { font-size: 0.65rem; color: #666; font-weight: bold; text-transform: uppercase; }
+    .bed-number { font-size: 2.8rem; font-weight: bold; line-height: 1; }
+    .patient-info-box { padding: 8px; width: 83.33333%; }
+    .content-row  { display: flex; }
+    .column-box   { border-right: 2px solid #000; display: flex; flex-direction: column; }
+    .column-box:last-child { border-right: none; }
+    /**/
+    .col-terapia  { width: 20.1%; }
+    .col-diaria   { width: 62.4%; }
+    .col-da-fare  { width: 17.5%; }
+    .piano-row    { display: flex; flex-direction: column; width: 100%; }
+    .col-header {
+      background: #e9ecef !important; padding: 3px 8px; font-weight: bold;
+      text-align: center; border-bottom: 1px solid #000;
+      font-size: 0.72rem; text-transform: uppercase;
+    }
+    .col-header-piano {
+      background: #e9ecef !important; padding: 3px 12px; font-weight: bold;
+      text-align: left; border-top: 2px solid #000; border-bottom: 1px solid #000;
+      font-size: 0.72rem; text-transform: uppercase;
+    }
+    .field-content       { padding: 4px 8px; word-wrap: break-word; font-size: 0.80rem; }
+    .field-content-piano { padding: 4px 12px; word-wrap: break-word; font-size: 0.80rem; }
+
+    /**/
+    .alt-row {
+      display: flex; border: 2px solid #000; border-radius: 6px; margin-bottom: 3px;
+      background: #fff;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .alt-col            { border-right: 2px solid #000; display: flex; flex-direction: column; }
+    .alt-col:last-child { border-right: none; }
+    .alt-col-info    { width: 12%; background: #f2efe9; }
+    .alt-col-diag    { width: 18%; }
+    .alt-col-diaria  { width: 53.5%; }
+    .alt-col-terapia { width: 16.5%; }
+    .alt-col-header {
+      background: #e8e6e1 !important; padding: 3px 6px; font-weight: bold;
+      font-size: 0.68rem; text-align: center; border-bottom: 1px solid #000;
+      text-transform: uppercase;
+    }
+    .alt-col-header-split {
+      background: #e8e6e1 !important; padding: 3px 6px; font-weight: bold;
+      font-size: 0.68rem; text-align: center; border-top: 2px solid #000;
+      border-bottom: 1px solid #000; text-transform: uppercase;
+    }
+    .alt-info-box    { display: flex; flex-direction: column; align-items: center; padding: 4px 3px; gap: 1px; }
+    .alt-bed-number  { font-size: 1.6rem; font-weight: bold; line-height: 1; }
+    /**/
+    .isolamento-banner {
+      display: block;
+      font-size: 1.25em;
+      font-weight: bold;
+      background: #ffcc80;
+      color: #3e2723;
+      text-transform: uppercase;
+      border-left: 4px solid #ef6c00;
+      border-radius: 3px;
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .isolamento-banner svg { vertical-align: -3px; margin-right: 5px; }
+    /**/
+    .rianimazione-banner {
+      display: block;
+      font-size: 1.25em;
+      font-weight: bold;
+      background: #ffcdd2;
+      color: #7f1d1d;
+      text-transform: uppercase;
+      border-left: 4px solid #c62828;
+      border-radius: 3px;
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .rianimazione-banner svg { vertical-align: -3px; margin-right: 5px; }
+    /**/
+    .scala-risultato {
+      display: block;
+      font-weight: bold;
+      background: #e3f2fd;
+      color: #0d47a1;
+      border-left: 3px solid #1565c0;
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin-bottom: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .scale-box {
+      border-bottom: 1.5px solid #90caf9;
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /**/
+    .lab-box { display: none !important; }
+    /**/
+    .pa-add, .pa-az { display: none !important; }
+    .diaria-status-box {
+      border-bottom: 1.5px solid #cfd8dc;
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /**/
+    .terapia-box {
+      border-bottom: 1.5px solid #26a69a;
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /**/
+    .pregressi-box {
+      border-bottom: 1.5px solid #ef9a9a;
+      margin-bottom: 4px;
+      padding-bottom: 3px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pregressi-head {
+      font-size: 0.72rem; font-weight: bold; color: #b71c1c;
+      text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 2px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .note-hdr { font-weight: bold; color: #37474f; margin-bottom: 2px; }
+    .alt-nome        { font-weight: bold; font-size: 0.80rem; text-align: center;
+                       text-transform: uppercase; width: 100%; padding: 2px;
+                       border-bottom: 1px solid #ccc; word-break: break-word; }
+    .alt-allergie-label { font-size: 0.58rem; font-weight: bold; color: #c62828;
+                          text-transform: uppercase; margin-top: 2px; }
+    .alt-allergie-val   { font-size: 0.65rem; width: 100%; padding: 2px; text-align: center;
+                          border-bottom: 1px solid #ccc; word-break: break-word; }
+    .alt-info-row  { display: flex; flex-direction: column; width: 100%;
+                     padding: 1px 2px; border-bottom: 1px solid #eee; }
+    .alt-info-label { font-size: 0.62rem; font-weight: bold; color: #333; }
+    .alt-info-val   { font-weight: normal; font-size: 0.52rem; width: 100%; }
+    .alt-editable   { padding: 4px 5px; font-size: 0.75rem; word-wrap: break-word; }
+    .alt-diagnosi   { font-weight: bold; font-size: 0.82rem; }
+    .alt-diag-top   { display: flex; flex-direction: column; }
+    .alt-diag-bottom, .alt-diag-fourth, .alt-diag-third { display: flex; flex-direction: column; }
+
+    /**/
+    .note-card .bed-number-box { background: #eceff1 !important; }
+    .note-card .bed-number { font-size: 1.2rem; letter-spacing: 2px; color: #546e7a; }
+
+    /**/
+    @media print {
+      #printBar { display: none !important; }
+      #loadingScreen { display: none !important; }
+      body { margin: 0; background: #fff; }
+      #printWrapper {
+        transform: none !important;
+        width: 100% !important;
+        padding-top: 0 !important;
+      }
+      .patient-card, .alt-row {
+        break-inside: auto !important;
+        page-break-inside: auto !important;
+      }
+      /**/
+      .column-header,
+      .column-header-piano,
+      .alt-col-header,
+      .alt-col-header-split,
+      .header-row {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!---->
+<div id="loadingScreen">
+  <div class="spinner-border text-light" role="status"></div>
+  <p>Caricamento dati in corso...</p>
+</div>
+
+<!---->
+<div id="printBar" style="display:none;">
+  <a class="bar-back" href="./"><i class="bi bi-arrow-left"></i> Torna all'app</a>
+  <span class="bar-label" id="barLabel"></span>
+  <button class="bar-print-btn" onclick="window.print()"><i class="bi bi-printer me-1"></i>Stampa / Salva PDF</button>
+</div>
+
+<div id="printWrapper" style="display:none;">
+  <div class="print-header">
+    <h2 id="printTitle"></h2>
+    <h3 id="printDate"></h3>
+  </div>
+  <div id="printCards"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<!---->
+<script src="js/ambiente.js"></script>
+<!---->
+<script src="js/librerie/purify-3.4.16.min.js" integrity="sha256-LJCptG1kY/JgOKKbaG6CvJHeAf2snVIp58/js2ATTqI="></script>
+<script src="js/sanifica.js"></script>
+<script src="js/api.js"></script>
+<script>!function(){var t=new URLSearchParams(window.location.search),e="alt"===t.get("layout")?"alt":"main",i="1"===t.get("saltaVuoti"),a="landscape"===t.get("orientamento")?"landscape":"portrait",l=t.get("ordinamento")||"tipologia",o=t.get("dataArchivio")||"",n=t.get("tipologie")||"all",s="0"!==t.get("includiNote"),r=Math.min(100,Math.max(10,parseInt(t.get("scala")||"100",10)))/100,d=null;n&&"all"!==n&&(d=n.toUpperCase().split(",").map(function(t){return t.trim()}).filter(function(t){return t}));var c=document.createElement("style");function v(t){return String(null==t?"":t).replace(/[&<>"']/g,function(t){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[t]})}function p(t){return _pulisciHtml(t)}function g(t){if(!t)return{vis:"-",giorni:"-"};var e,i=String(t).trim();if(/^\d{4}-\d{2}-\d{2}/.test(i)){var a=i.substring(0,10).split("-");e=new Date(parseInt(a[0],10),parseInt(a[1],10)-1,parseInt(a[2],10))}else if(/^\d{2}\/\d{2}\/\d{4}/.test(i)){a=i.split("/");e=new Date(parseInt(a[2],10),parseInt(a[1],10)-1,parseInt(a[0],10))}else e=new Date(i);if(!e||isNaN(e.getTime()))return{vis:i,giorni:"-"};e.setHours(0,0,0,0);var l=new Date;return l.setHours(0,0,0,0),{vis:String(e.getDate()).padStart(2,"0")+"/"+String(e.getMonth()+1).padStart(2,"0")+"/"+e.getFullYear(),giorni:Math.max(0,Math.floor((l-e)/864e5))}}function f(t){if(!t)return{vis:"-",eta:"-"};var e=String(t).trim(),i=null;if(/^\d{2}\/\d{2}\/\d{4}$/.test(e)){var a=e.split("/");i=new Date(parseInt(a[2],10),parseInt(a[1],10)-1,parseInt(a[0],10))}else if(/^\d{4}-\d{2}-\d{2}/.test(e)){a=e.substring(0,10).split("-");i=new Date(parseInt(a[0],10),parseInt(a[1],10)-1,parseInt(a[2],10))}if(!i||isNaN(i.getTime()))return{vis:e,eta:"-"};i.setHours(0,0,0,0);var l=String(i.getDate()).padStart(2,"0")+"/"+String(i.getMonth()+1).padStart(2,"0")+"/"+i.getFullYear(),o=new Date;o.setHours(0,0,0,0);var n=o.getFullYear()-i.getFullYear();return(o.getMonth()<i.getMonth()||o.getMonth()===i.getMonth()&&o.getDate()<i.getDate())&&n--,{vis:l,eta:n}}function m(t,e){var i=t||"",a=e||"2.2rem";return"M"===i?'<span style="font-size:'+a+';color:#7ec8e3;margin-left:4px;line-height:1;-webkit-text-stroke:2px #7ec8e3;">&#9794;</span>':"F"===i?'<span style="font-size:'+a+';color:#f4a7c3;margin-left:4px;line-height:1;-webkit-text-stroke:2px #f4a7c3;">&#9792;</span>':'<span style="font-size:'+a+';color:#b8b0a0;margin-left:4px;line-height:1;-webkit-text-stroke:2px #b8b0a0;">&#8856;</span>'}function u(t){for(var e=!0;e;)for(e=!1;t.lastChild;){var i=t.lastChild;if(3!==i.nodeType||""!==i.nodeValue.replace(/[\s\u00a0]/g,""))if("BR"!==i.nodeName){if(1!==i.nodeType||""!==(i.innerText||"").replace(/[\s\u00a0\n\r]/g,""))break;t.removeChild(i),e=!0}else t.removeChild(i),e=!0;else t.removeChild(i),e=!0}}function b(t,n){var c,b=new Date,h=String(b.getDate()).padStart(2,"0")+"/"+String(b.getMonth()+1).padStart(2,"0")+"/"+b.getFullYear();if(o)if(/^\d{10,13}$/.test(String(o))){var y=new Date(Number(o));c=n+" - Archivio del "+(String(y.getDate()).padStart(2,"0")+"/"+String(y.getMonth()+1).padStart(2,"0")+"/"+y.getFullYear())+(" alle "+String(y.getHours()).padStart(2,"0")+":"+String(y.getMinutes()).padStart(2,"0"))}else{var x=o.split(" ");c=n+" - Archivio del "+x[0].split("-").reverse().join("/")+(x.length>1?" alle "+x[1].substring(0,5):"")}else c=n+" - Consegne del "+h;document.title=c,document.getElementById("barLabel").textContent=c,document.getElementById("printTitle").textContent=c,o||(document.getElementById("printDate").textContent="Stampato il: "+h),function(t){var e=function(t,e){var i=parseInt(t.Letto,10),a=parseInt(e.Letto,10);return isNaN(i)||isNaN(a)?String(t.Letto).localeCompare(String(e.Letto)):i-a};t.sort(function(t,i){if("NOTE"===t.Letto)return 1;if("NOTE"===i.Letto)return-1;if("numero"===l)return e(t,i);if("nome"===l){var a=(t.Nome||"").toLowerCase().trim(),o=(i.Nome||"").toLowerCase().trim();return a||o?a?o?0!==(n=a.localeCompare(o))?n:e(t,i):-1:1:e(t,i)}var n,s=(t.TipologiaLetto||"").toLowerCase(),r=(i.TipologiaLetto||"").toLowerCase();return s||r?s?r?0!==(n=s.localeCompare(r))?n:e(t,i):-1:1:e(t,i)})}(t);var w=null;t=t.filter(function(t){return"NOTE"!==t.Letto||(w=t,!1)}),i&&(t=t.filter(function(t){return""!==String(t.Nome||"").trim()||""!==String(t.Diagnosi||"").trim()})),d&&d.length>0&&(t=t.filter(function(t){var e=String(t.TipologiaLetto||"").trim().toUpperCase()||"STANDARD";return-1!==d.indexOf(e)}));var S="";t.forEach(function(t){S+="alt"===e?function(t){var e=g(t.DataRicovero),i=f(t.DataNascita),a="-"!==i.eta?i.eta:t.Eta||"-",l=String(t.TipologiaLetto||"").trim().toUpperCase(),o="function"==typeof window._printGetColoreTipo?window._printGetColoreTipo(l):"#546e7a",n=l?'<span class="badge text-white text-uppercase" style="background:'+_coloreSicuro(o,"#546e7a")+';font-size:0.62rem;">'+v(l)+"</span>":'<span style="font-size:0.62rem;color:#999;">STANDARD</span>';return'<div class="alt-row"><div class="alt-col alt-col-info"><div class="alt-info-box"><div style="display:flex;align-items:center;justify-content:center;gap:4px;"><div class="alt-bed-number">'+v(t.Letto)+"</div>"+((t.Dimissibile||"").trim()&&"function"==typeof _dimIconSvg?_dimIconSvg(16):"")+(-1!==String(t.Diaria||"").indexOf("isolamento-banner")&&"function"==typeof _virusIconSvg?_virusIconSvg(16):"")+(-1!==String(t.Diaria||"").indexOf("rianimazione-banner")&&"function"==typeof _rianimIconSvg?_rianimIconSvg(16):"")+m(t.Sesso,"1.6rem")+"</div>"+n+'<div class="alt-nome">'+v(t.Nome)+'</div><div class="alt-allergie-label"><i class="bi bi-exclamation-triangle-fill"></i> Allergie</div><div class="alt-allergie-val">'+p(t.Allergie)+'</div><div class="alt-info-row"><div class="alt-info-label">Data di Nascita</div><div class="alt-info-val">'+v(i.vis)+'</div></div><div class="alt-info-row"><div class="alt-info-label">Et&agrave;</div><div class="alt-info-val">'+v(a)+'</div></div><div class="alt-info-row"><div class="alt-info-label">Data di Ricovero</div><div class="alt-info-val">'+v(e.vis)+'</div></div><div class="alt-info-row"><div class="alt-info-label">Giorni di Ricovero</div><div class="alt-info-val" style="color:#c62828;">'+v(e.giorni)+'</div></div><div class="alt-info-row"><div class="alt-info-label">C.S.</div><div class="alt-info-val">'+v(t.CodiceSanitario)+'</div></div><div class="alt-info-row"><div class="alt-info-label">Ossigeno</div><div class="alt-info-val">'+v(t.Ossigeno)+'</div></div><div class="alt-info-row"><div class="alt-info-label">Vitto</div><div class="alt-info-val">'+v(t.Vitto)+'</div></div></div></div><div class="alt-col alt-col-diag"><div class="alt-diag-top"><div class="alt-col-header">Diagnosi / Motivo Ricovero</div><div class="alt-editable alt-diagnosi">'+v(t.Diagnosi)+'</div></div><div class="alt-diag-bottom"><div class="alt-col-header-split">Problemi Attivi</div><div class="alt-editable">'+p(t.PianoTerapeutico)+'</div></div><div class="alt-diag-fourth"><div class="alt-col-header-split">Esami Colturali, Scale di Valutazione e Laboratorio.</div><div class="alt-editable">'+p(t.EsamiColturali)+'</div></div><div class="alt-diag-third"><div class="alt-col-header-split">Da Fare / Richieste</div><div class="alt-editable">'+p(t.DaFare)+'</div></div></div><div class="alt-col alt-col-diaria"><div class="alt-col-header">Diaria ed Epicrisi</div><div class="alt-editable">'+p(t.Diaria)+'</div></div><div class="alt-col alt-col-terapia"><div class="alt-col-header">Note e Terapia</div><div class="alt-editable">'+p(t.NoteTerapia)+"</div></div></div>"}(t):function(t){var e=g(t.DataRicovero),i=f(t.DataNascita),a="-"!==i.eta?i.eta:t.Eta||"-",l=String(t.TipologiaLetto||"").trim().toUpperCase(),o="function"==typeof window._printGetColoreTipo?window._printGetColoreTipo(l):"#546e7a",n=l?'<span class="badge text-white text-uppercase mt-1" style="background:'+_coloreSicuro(o,"#546e7a")+';font-size:0.65rem;">'+v(l)+"</span>":'<span style="font-size:0.65rem;color:#999;">STANDARD</span>';return'<div class="patient-card"><div class="header-row"><div class="bed-number-box"><div class="bed-label">Letto</div><div style="display:flex;align-items:center;justify-content:center;"><div class="bed-number">'+v(t.Letto)+"</div>"+m(t.Sesso,"2.2rem")+"</div>"+n+'</div><div class="patient-info-box"><div class="d-flex justify-content-between align-items-start"><div style="width:70%;"><div class="d-flex align-items-start mb-1"><span class="text-muted me-2" style="font-size:0.75rem;white-space:nowrap;">Paziente:</span><div class="fw-bold fs-5 text-uppercase" style="border-bottom:1px solid #999;padding:1px;width:100%;">'+v(t.Nome)+'</div></div><div class="d-flex align-items-start"><span class="text-muted me-2" style="font-size:0.72rem;white-space:nowrap;">Diagnosi / Motivo Ricovero:</span><div class="fw-bold" style="border-bottom:1px solid #999;padding:1px;width:100%;">'+v(t.Diagnosi)+'</div></div></div><div style="text-align:right;min-width:190px;font-size:0.80rem;"><div class="mb-1"><span class="text-muted">Nasc.: </span><strong>'+v(i.vis)+'</strong></div><div class="mb-1"><span class="text-muted">Et&agrave;: </span><strong>'+v(a)+'</strong></div><div class="mb-1"><span class="text-muted">Ricovero: </span><strong>'+v(e.vis)+'</strong></div><div class="mb-1"><span class="text-muted">Giorni: </span><strong style="color:#c62828;">'+v(e.giorni)+'</strong></div><div><span class="text-muted">C.S.: </span><strong>'+v(t.CodiceSanitario)+'</strong></div></div></div></div></div><div class="content-row"><div class="column-box col-terapia"><div class="col-header"><i class="bi bi-exclamation-triangle-fill text-danger me-1" style="font-size:0.65rem;"></i>Allergie</div><div class="field-content">'+p(t.Allergie)+'</div><div class="col-header" style="border-top:1px solid #ccc;">Ossigeno</div><div class="field-content">'+v(t.Ossigeno)+'</div><div class="col-header" style="border-top:1px solid #ccc;">Vitto</div><div class="field-content">'+v(t.Vitto)+'</div><div class="col-header" style="border-top:2px solid #000;">Note e Terapia</div><div class="field-content">'+p(t.NoteTerapia)+'</div></div><div class="column-box col-diaria"><div class="col-header">Diaria ed Epicrisi</div><div class="field-content">'+p(t.Diaria)+'</div></div><div class="column-box col-da-fare"><div class="col-header">Da Fare / Richieste</div><div class="field-content">'+p(t.DaFare)+'</div></div></div><div class="piano-row"><div class="col-header-piano">Problemi Attivi</div><div class="field-content-piano">'+p(t.PianoTerapeutico)+"</div></div></div>"}(t)}),w&&s&&(S+="alt"===e?'<div class="alt-row"><div class="alt-col alt-col-info"><div class="alt-info-box"><div class="alt-bed-number" style="font-size:1rem;letter-spacing:1px;">NOTE</div></div></div><div class="alt-col" style="flex:1;border-right:none;"><div class="alt-editable" style="padding:6px;font-size:0.85rem;">'+p(w.Diaria)+"</div></div></div>":function(t){return'<div class="patient-card"><div class="header-row"><div class="bed-number-box"><div class="bed-label">Note</div><div class="bed-number" style="font-size:1.4rem;letter-spacing:1px;">NOTE</div></div><div class="patient-info-box" style="width:83.33333%;"><div style="padding:6px;font-size:0.85rem;">'+p(t.Diaria)+"</div></div></div></div>"}(w)),document.getElementById("printCards").innerHTML=S,document.querySelectorAll(".field-content, .field-content-piano, .alt-editable").forEach(u),document.getElementById("loadingScreen").style.display="none",document.getElementById("printBar").style.display="flex",document.getElementById("printWrapper").style.display="block";var D=Math.round(96*("landscape"===a?281:194)/25.4),T=document.getElementById("printWrapper");T.style.paddingTop="52px",1!==r&&(T.style.zoom=r),T.style.width=Math.round(D/r)+"px",requestAnimationFrame(function(){requestAnimationFrame(function(){!function(){for(var t=document.querySelectorAll(".page-break"),e=t.length-1;e>=0;e--)t[e].parentNode.removeChild(t[e]);var i=Array.prototype.slice.call(document.querySelectorAll(".patient-card, .alt-row"));if(0!==i.length){i.forEach(function(t){t.style.marginTop=""});var l=("landscape"===a?210:297)-28,o=Math.round(l*(96/25.4)/r),n=document.querySelector(".print-header"),s=n?n.offsetHeight+3:0;i.forEach(function(t){var e=t.offsetHeight;if(o-s%o>=300)s+=e+3;else{var i=Math.ceil((s+1)/o)*o;t.style.marginTop=i-s+"px",s=i+e+3}})}}(),T.style.width="",window.print()})})}c.textContent="@page { size: A4 "+a+"; margin: 20mm 8mm 8mm 8mm; }",document.head.appendChild(c);var h="function"==typeof window._sanificaPronta&&window._sanificaPronta()?o?_sbGetDatiArchivioGiorno(o).then(function(t){return t&&t.pazienti||[]}):_sbGetPazienti():Promise.reject(new Error("componente di sicurezza non caricato: ricarica la pagina"));Promise.all([h,_sbOttieniNomeReparto(),_sbGetColoriTipologie()]).then(function(t){var e=t[0]||[],i=t[1]&&t[1].nome||"Reparto",a=t[2]||{};window._printGetColoreTipo=function(t){if(!t)return"#6c757d";var e=Object.prototype.hasOwnProperty.call(a,t)?a[t]:"";return _coloreSicuro(e||stringToColor(t),"#546e7a")},b(e,i)}).catch(function(t){document.getElementById("loadingScreen").innerHTML='<i class="bi bi-exclamation-triangle-fill text-warning" style="font-size:3rem;"></i><p style="color:#fff;margin-top:12px;">Errore nel caricamento dati.<br><small style="opacity:0.7;">'+v(t&&t.message)+'</small></p><a href="./" style="color:#80cbc4;margin-top:16px;font-size:0.9rem;"><i class="bi bi-arrow-left me-1"></i>Torna all\'app</a>'})}();</script>
+
+</body>
+</html>
