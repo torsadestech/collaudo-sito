@@ -1,0 +1,74 @@
+/**/
+.ta-velo { --ta-carta: #fff; --ta-testo: #1d2a33; --ta-tenue: #5b6b77; --ta-linea: #d9e0e6; --ta-blu: #1565c0; --ta-rosso: #b71c1c; --ta-giallo: #fff4d6; --ta-ambra: #7a4f00; --ta-tenue-fondo: #f1f4f7;
+  position: fixed; inset: 0; z-index: 2147483000; display: none; align-items: center; justify-content: center; background: rgba(15, 23, 30, .55); padding: 16px; }
+@media (prefers-color-scheme: dark) {
+  .ta-velo { --ta-carta: #1b2329; --ta-testo: #e3e9ee; --ta-tenue: #9aabb7; --ta-linea: #33414b; --ta-blu: #64a8f0; --ta-rosso: #ef8a8a; --ta-giallo: #3b3220; --ta-ambra: #e0b45c; --ta-tenue-fondo: #222b31; }
+}
+.ta-velo.ta-aperto { display: flex; }
+.ta-pannello { width: 100%; max-width: 560px; max-height: calc(100vh - 32px); display: flex; flex-direction: column; background: var(--ta-carta); color: var(--ta-testo);
+  border-radius: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, .3); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; text-align: left; }
+.ta-testa { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--ta-linea); }
+.ta-titolo { margin: 0; font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+.ta-corpo { padding: 14px 16px 18px; overflow-y: auto; }
+.ta-corpo p { margin: 0 0 10px; }
+.ta-btn { padding: 8px 14px; border: 0; border-radius: 8px; background: var(--ta-blu); color: #fff; font: 600 14px system-ui, Arial, sans-serif; cursor: pointer; min-height: 40px; }
+.ta-btn.ta-leggero { background: transparent; color: var(--ta-testo); border: 1px solid var(--ta-linea); font-weight: 500; }
+.ta-btn.ta-pericolo { color: var(--ta-rosso); }
+.ta-btn.ta-piccolo { padding: 4px 10px; font-size: 13px; min-height: 32px; }
+.ta-btn.ta-largo { width: 100%; margin-top: 10px; }
+.ta-btn:disabled { opacity: .5; cursor: default; }
+.ta-btn:focus-visible, .ta-input:focus-visible { outline: 3px solid var(--ta-blu); outline-offset: 2px; }
+.ta-bottoni { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.ta-scelte { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.ta-scelta { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; background: var(--ta-tenue-fondo); color: var(--ta-testo); border: 2px solid transparent; font-weight: 400; padding: 12px 14px; }
+.ta-scelta strong { font-size: 15px; }
+.ta-scelta span { font-size: 13px; color: var(--ta-tenue); }
+.ta-scelta.ta-scelto { border-color: var(--ta-blu); }
+.ta-campo { display: flex; flex-direction: column; gap: 4px; margin: 10px 0; }
+.ta-etichetta { font-size: 13px; font-weight: 600; }
+.ta-input { font: inherit; color: var(--ta-testo); background: var(--ta-carta); border: 1px solid var(--ta-linea); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+textarea.ta-input { resize: vertical; }
+.ta-opzioni { display: flex; flex-wrap: wrap; gap: 6px; }
+.ta-opzione { background: var(--ta-tenue-fondo); color: var(--ta-testo); font-weight: 500; border: 2px solid transparent; }
+.ta-opzione.ta-scelto { border-color: var(--ta-blu); }
+.ta-nota { font-size: 13px; color: var(--ta-tenue); }
+.ta-attenzione { padding: 8px 10px; border-radius: 8px; background: var(--ta-giallo); color: var(--ta-ambra); font-weight: 600; font-size: 14px; }
+.ta-sospetto { padding: 8px 10px; border-radius: 8px; background: var(--ta-giallo); color: var(--ta-ambra); font-size: 13px; }
+.ta-errore { padding: 8px 10px; border-radius: 8px; background: #fdecea; color: #b71c1c; font-size: 13px; }
+.ta-risposta { padding: 8px 10px; border-radius: 8px; background: #e3f2fd; color: #0d47a1; font-weight: 600; }
+.ta-riquadro { border: 1px solid var(--ta-linea); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+.ta-riga-coda { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 6px 0; font-size: 14px; overflow-wrap: anywhere; }
+.ta-doppioni { border: 1px dashed var(--ta-linea); border-radius: 8px; padding: 8px 10px; }
+.ta-elenco-dati { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 6px 0 10px; font-size: 14px; }
+.ta-elenco-dati dt { color: var(--ta-tenue); }
+.ta-elenco-dati dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.ta-tecnici summary, .ta-recapito summary { cursor: pointer; color: var(--ta-tenue); font-size: 13px; margin: 8px 0; }
+.ta-grande { font-size: 18px; font-weight: 600; }
+.ta-sezione { margin: 14px 0 6px; font-size: 15px; overflow-wrap: anywhere; }
+.ta-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ta-voce { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; background: var(--ta-tenue-fondo); color: var(--ta-testo); font-weight: 400; }
+.ta-voce.ta-da-fare { border-left: 4px solid var(--ta-blu); }
+.ta-voce-testa { font-size: 12px; font-weight: 700; }
+.ta-voce-titolo { font-weight: 600; overflow-wrap: anywhere; }
+.ta-stato { font-weight: 600; }
+.ta-messaggi { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ta-msg { border: 1px solid var(--ta-linea); border-radius: 8px; padding: 8px 10px; }
+.ta-msg p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ta-da-assistenza { background: #eef5ff; }
+.ta-da-sistema { background: var(--ta-tenue-fondo); }
+@media (prefers-color-scheme: dark) { .ta-da-assistenza { background: #1c2a3a; } }
+.ta-avviso { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 2147483001; max-width: calc(100vw - 32px); padding: 10px 14px; border-radius: 8px;
+  background: #263238; color: #fff; font: 14px/1.4 system-ui, Arial, sans-serif; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.ta-avviso.ta-visibile { opacity: 1; }
+html.ta-modale-aperta { overflow: hidden; }
+
+/**/
+@media (max-width: 600px) {
+  .ta-velo { padding: 0; align-items: stretch; }
+  .ta-pannello { max-width: none; max-height: none; height: 100%; border-radius: 0; padding-bottom: env(safe-area-inset-bottom); }
+  .ta-testa { padding-top: max(12px, env(safe-area-inset-top)); }
+  .ta-elenco-dati { grid-template-columns: 1fr; }
+  .ta-elenco-dati dd { margin-bottom: 6px; }
+  .ta-bottoni { justify-content: stretch; }
+  .ta-bottoni .ta-btn { flex: 1 1 auto; }
+}

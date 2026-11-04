@@ -1556,7 +1556,11 @@ html.modulo-rubrica-spento .modulo-rubrica,
 html.modulo-terapia-spento .modulo-terapia,
 html.modulo-laboratorio-spento .modulo-laboratorio,
 html.modulo-scale-spento .modulo-scale,
-html.modulo-dimissioni-spento .modulo-dimissioni { display: none !important; }
+html.modulo-dimissioni-spento .modulo-dimissioni,
+html.modulo-aiuto-spento .modulo-aiuto { display: none !important; }
+/**/
+.aiuto-novita { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d32f2f; margin-left: 6px; vertical-align: middle; }
+.aiuto-novita[hidden] { display: none !important; }
 /**/
 html.modulo-terapia-spento .patient-card.focus-mode .terapia-box:empty { padding: 0; cursor: auto; }
 html.modulo-terapia-spento .patient-card.focus-mode .terapia-box:empty::before,
