@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Guida alle Consegne</title>
+<!---->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Manuale Utente delle Consegne</title>
 <link rel="stylesheet" href="manuale.css">
+<link rel="stylesheet" href="indice-laterale.css">
+<script src="indice-laterale.js" defer></script>
 </head>
 <body>
 <header class="testata">
-  <h1>Guida al Sistema Consegne</h1>
+  <h1>Manuale Utente del Sistema Consegne</h1>
   <p class="sotto">Come usare il programma, dall'accesso all'ultima funzione. Ogni funzione ha il suo capitoletto.</p>
-  <p class="azioni"><a class="btn" href="manuale-consegne.pdf" download>Scarica il PDF</a> <a class="btn chiaro" href="../">Torna alle consegne</a></p>
+  <p class="azioni"><a class="btn" href="manuale-consegne.pdf" download>Scarica il PDF</a> <a class="btn chiaro solo-fuori-cornice" href="../">Torna alle consegne</a></p>
 </header>
 
 <nav class="indice" aria-label="Indice">
@@ -678,8 +682,8 @@
     <li>Premi «Help Desk» nella barra in alto, poi «Apri un ticket».</li>
     <li>Scegli «Segnala un problema», «Chiedi una funzione» oppure «Fai una domanda».</li>
   </ol>
-  <p>Il pallino rosso su «Help Desk» vuol dire che l'assistenza ti ha risposto. «Leggi la guida», in fondo alla finestra, apre questa guida.</p>
-  <figure><img src="img/37-helpdesk-menu.jpg" alt="Il menu Help Desk" loading="lazy"><figcaption>«Help Desk»: «Apri un ticket», «Le mie segnalazioni» e «Guida».</figcaption></figure>
+  <p>Il pallino rosso su «Help Desk» vuol dire che l'assistenza ti ha risposto. «Leggi la guida», in fondo alla finestra, apre questo manuale (<a href="#c12-5">12.5</a>).</p>
+  <figure><img src="img/37-helpdesk-menu.jpg" alt="Il menu Help Desk" loading="lazy"><figcaption>«Help Desk»: «Apri un ticket», «Le mie segnalazioni» e «Manuale Utente».</figcaption></figure>
   <figure><img src="img/38-ticket-scelte.jpg" alt="Le tre scelte" loading="lazy"><figcaption>Le tre scelte e, in fondo, «Leggi la guida».</figcaption></figure>
 </section>
 
@@ -782,14 +786,17 @@
 </section>
 
 <section class="cap" id="c12-5">
-  <h3>12.5 «Guida»</h3>
-  <p class="serve">Apre questa guida in una nuova scheda del browser: le consegne restano aperte nella scheda di prima.</p>
-  <ul>
-    <li>Rotellina → «Guida».</li>
-    <li>Oppure «Help Desk» → «Guida», o «Leggi la guida» dentro «Apri un ticket» e «Le mie segnalazioni».</li>
-    <li>In alto, «Scarica il PDF» la salva per leggerla o stamparla; «Torna alle consegne» riporta al programma.</li>
-  </ul>
-  <figure><img src="img/43b-guida-rotellina.jpg" alt="Guida nella rotellina" loading="lazy"><figcaption>«Guida», nella rotellina.</figcaption></figure>
+  <h3>12.5 «Manuale Utente»</h3>
+  <p class="serve">Apre questo manuale senza lasciare le consegne.</p>
+  <ol>
+    <li>«Help Desk» → «Manuale Utente», oppure rotellina → «Manuale Utente» (o «Leggi la guida» dentro l'Help Desk).</li>
+    <li>Dal computer si apre in una finestra: la sposti trascinando la barra in alto e la allarghi dall'angolo in basso a destra. Intanto la pagina sotto resta usabile; «×» la chiude.</li>
+    <li>A sinistra c'è il menu dei capitoli: «+» mostra i capitoletti e un clic porta alla sezione. La freccia « in alto lo chiude, «☰ Indice» lo riapre.</li>
+  </ol>
+  <p>Dal telefono il manuale si apre in una nuova scheda del browser. In alto, «Scarica il PDF» lo salva per leggerlo o stamparlo.</p>
+  <figure><img src="img/43c-manuale-finestra.jpg" alt="Il Manuale Utente nella sua finestra" loading="lazy"><figcaption>La finestra del manuale, con il menu dei capitoli a sinistra.</figcaption></figure>
+  <figure><img src="img/43b-guida-rotellina.jpg" alt="Manuale Utente nella rotellina" loading="lazy"><figcaption>«Manuale Utente», nella rotellina.</figcaption></figure>
+  <figure class="telefono"><img src="img/43d-manuale-telefono.jpg" alt="Il menu del manuale dal telefono" loading="lazy"><figcaption>Dal telefono: il menu dei capitoli, aperto con «☰ Indice».</figcaption></figure>
 </section>
 
 <!---->
@@ -886,7 +893,6 @@
     <li><a href="#c12-4">Esci</a></li>
     <li><a href="#c5-3">Esami di laboratorio</a></li>
     <li><a href="#c2-4">Formattazione del testo</a></li>
-    <li><a href="#c12-5">Guida</a></li>
     <li><a href="#c11-1">Help Desk</a></li>
     <li><a href="#c5-6">Imposta allarmi</a></li>
     <li><a href="#c7-2">Impostazioni email</a></li>
@@ -897,6 +903,7 @@
     <li><a href="#c1-5">Lista Pazienti</a></li>
     <li><a href="#c12-3">Log</a></li>
     <li><a href="#c7-1">Mail di dimissione</a></li>
+    <li><a href="#c12-5">Manuale Utente</a></li>
     <li><a href="#c4-7">Modifica Nome Consegne</a></li>
     <li><a href="#c2-10">Nome del paziente</a></li>
     <li><a href="#c8-1">Numeri Telefono</a></li>

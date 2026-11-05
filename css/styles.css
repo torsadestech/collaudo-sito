@@ -1573,3 +1573,53 @@ html.modo-rubrica .rubrica-spenta:not([hidden]) ~ #rubricaPanel { display: none 
 .rubrica-spenta-testo .bi-telephone-x { font-size: 48px; color: #90a4ae; }
 .rubrica-spenta-testo p { margin: 12px 0 0; font-size: 18px; }
 .rubrica-spenta-testo .rubrica-spenta-sotto { font-size: 14px; color: #b0bec5; margin-bottom: 20px; }
+
+/**/
+.manuale-pannello {
+  position: fixed;
+  z-index: 9501;
+  top: 80px;
+  left: 24px;
+  width: 900px;
+  height: 640px;
+  min-width: 340px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .28);
+  overflow: hidden;
+}
+.manuale-pannello[hidden] { display: none; }
+.manuale-testa {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #37474f, #546e7a);
+  color: #fff;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.manuale-gesto .manuale-testa { cursor: grabbing; }
+.manuale-titolo { font-size: .92rem; font-weight: 700; letter-spacing: .5px; }
+.manuale-azioni { display: flex; align-items: center; gap: 12px; }
+.manuale-fuori { color: #fff; opacity: .85; font-size: .95rem; }
+.manuale-fuori:hover { color: #fff; opacity: 1; }
+.manuale-chiudi { background: none; border: none; color: #fff; font-size: 1.3rem; line-height: 1; padding: 0 2px; opacity: .85; cursor: pointer; }
+.manuale-cornice { flex: 1; width: 100%; border: none; }
+.manuale-gesto .manuale-cornice { pointer-events: none; }
+.manuale-angolo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  touch-action: none;
+  background: linear-gradient(135deg, transparent 50%, rgba(55, 71, 79, .55) 50%, rgba(55, 71, 79, .55) 60%, transparent 60%, transparent 70%, rgba(55, 71, 79, .55) 70%, rgba(55, 71, 79, .55) 80%, transparent 80%);
+}
+html.modo-rubrica .manuale-pannello { display: none !important; }
