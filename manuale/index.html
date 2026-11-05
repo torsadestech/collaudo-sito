@@ -128,6 +128,7 @@
     <li>Per chiudere tocca fuori dalla scheda, nella parte scura.</li>
   </ol>
   <p class="att">Attenzione: dopo 5 minuti senza toccare nulla la scheda si chiude e salva da sola.</p>
+  <p>Nome, allergie, date, codice sanitario e sesso stanno nella colonna di sinistra: vedi da <a href="#c2-10">2.10</a> a <a href="#c2-13">2.13</a>.</p>
   <figure><img src="img/06-matita.jpg" alt="La matita per aprire la scheda" loading="lazy"><figcaption>La matita gialla accanto al numero del letto.</figcaption></figure>
 </section>
 
@@ -220,6 +221,52 @@
   </ol>
   <p class="att">Attenzione: con la scheda chiusa la casella non si cambia; il programma te lo ricorda.</p>
   <figure><img src="img/14-dimissibile.jpg" alt="Imposta data di dimissione" loading="lazy"><figcaption>«Imposta data di dimissione».</figcaption></figure>
+</section>
+
+<section class="cap" id="c2-10">
+  <h3>2.10 Nome e allergie</h3>
+  <p class="serve">I dati del paziente stanno nella colonna di sinistra della scheda, sotto il numero del letto.</p>
+  <ol>
+    <li>Apri la scheda in modifica (<a href="#c2-1">2.1</a>).</li>
+    <li>Sotto il numero del letto scrivi cognome e nome, come in TrakCare (per esempio «ROSSI MARIO»).</li>
+    <li>Sotto «Allergie» scrivi le allergie note, oppure «Nega allergie».</li>
+  </ol>
+  <p class="att">Attenzione: l'importazione di terapia ed esami controlla che il nome sia lo stesso di TrakCare (<a href="#c5-2">5.2</a>).</p>
+  <figure><img src="img/06b-nome-allergie.jpg" alt="Nome e allergie nella scheda aperta" loading="lazy"><figcaption>Nome e allergie, a scheda aperta.</figcaption></figure>
+</section>
+
+<section class="cap" id="c2-11">
+  <h3>2.11 Data di nascita ed età</h3>
+  <ol>
+    <li>A scheda aperta tocca «Data di Nascita» e scrivi solo le cifre: le barre si mettono da sole (12111965 diventa 12/11/1965).</li>
+    <li>Va bene anche l'anno a due cifre (121165).</li>
+    <li>Esci dal campo: l'età si calcola da sola e non si può cambiare a mano.</li>
+  </ol>
+  <p>Senza data di nascita, l'età si può scrivere a mano. Una data che non esiste diventa rossa, con il motivo.</p>
+  <figure class="telefono"><img src="img/06c-data-nascita.jpg" alt="Data di nascita ed età" loading="lazy"><figcaption>«Data di Nascita» ed «Età», calcolata da sola.</figcaption></figure>
+</section>
+
+<section class="cap" id="c2-12">
+  <h3>2.12 Ricovero, codice sanitario, ossigeno e vitto</h3>
+  <ul>
+    <li>«Ricovero»: la data del ricovero, scritta come quella di nascita. «Giorni di Ricovero» si conta da solo.</li>
+    <li>«C.S.»: il codice sanitario del paziente.</li>
+    <li>«Ossigeno»: per esempio «CN 4 lt/min»; «Vitto»: per esempio «completo», «diabetico», «senza scorie».</li>
+  </ul>
+  <p>Tutti si scrivono a scheda aperta e si salvano da soli (<a href="#c2-2">2.2</a>).</p>
+  <figure class="telefono"><img src="img/06d-ricovero-cs.jpg" alt="Ricovero, codice sanitario, ossigeno e vitto" loading="lazy"><figcaption>Ricovero, giorni di ricovero, C.S., ossigeno e vitto.</figcaption></figure>
+</section>
+
+<section class="cap" id="c2-13">
+  <h3>2.13 Il sesso del paziente</h3>
+  <p class="serve">L'iconcina accanto al numero del letto dice il sesso del paziente.</p>
+  <ol>
+    <li>Apri la scheda in modifica.</li>
+    <li>Clicca sull'iconcina accanto al numero del letto: a ogni clic passa a maschio (♂ azzurro), femmina (♀ rosa), niente (⊘ grigio), e di nuovo da capo.</li>
+  </ol>
+  <p>«Niente» è lo stato di partenza: un letto svuotato (<a href="#c4-1">4.1</a>) torna sempre a «niente». Il sesso conta nel riepilogo dei letti (<a href="#c1-6">1.6</a>) e colora il numero del letto in «Lista Pazienti».</p>
+  <p class="att">Attenzione: con la scheda chiusa il clic sull'iconcina non fa nulla.</p>
+  <figure><img src="img/06f-sesso-stati.jpg" alt="I tre stati dell'icona del sesso" loading="lazy"><figcaption>Niente, maschio, femmina: un clic per passare al successivo.</figcaption></figure>
 </section>
 
 <!---->
@@ -818,6 +865,7 @@
   <ul class="colonne">
     <li><a href="#c1-3">Accedi con Google</a></li>
     <li><a href="#c4-4">Aggiungi Posto Letto</a></li>
+    <li><a href="#c2-10">Allergie</a></li>
     <li><a href="#c2-5">Aggiungi data odierna</a></li>
     <li><a href="#c10-1">Archivio</a></li>
     <li><a href="#c7-2">Autorizza Google</a></li>
@@ -825,6 +873,9 @@
     <li><a href="#c4-3">Cambia Tipologia</a></li>
     <li><a href="#c12-2">Check Update</a></li>
     <li><a href="#c9-3">Check List Odierna</a></li>
+    <li><a href="#c2-12">Codice sanitario (C.S.)</a></li>
+    <li><a href="#c2-11">Data di nascita ed età</a></li>
+    <li><a href="#c2-12">Data di ricovero</a></li>
     <li><a href="#c12-3">Diagnostica Prestazioni</a></li>
     <li><a href="#c4-1">Dimetti / Svuota Letto</a></li>
     <li><a href="#c2-9">Dimissibile</a></li>
@@ -844,19 +895,23 @@
     <li><a href="#c12-3">Log</a></li>
     <li><a href="#c7-1">Mail di dimissione</a></li>
     <li><a href="#c4-7">Modifica Nome Consegne</a></li>
+    <li><a href="#c2-10">Nome del paziente</a></li>
     <li><a href="#c8-1">Numeri Telefono</a></li>
     <li><a href="#c4-6">Ordina i letti</a></li>
+    <li><a href="#c2-12">Ossigeno</a></li>
     <li><a href="#c3-1">Problemi Attivi</a></li>
     <li><a href="#c2-6">Recupera dati</a></li>
     <li><a href="#c2-8">Rianimazione</a></li>
     <li><a href="#c10-3">Ripristina da Backup</a></li>
     <li><a href="#c2-2">Salva ora</a></li>
     <li><a href="#c6-1">Scale di valutazione</a></li>
+    <li><a href="#c2-13">Sesso del paziente</a></li>
     <li><a href="#c4-2">Sposta / Scambia</a></li>
     <li><a href="#c9-1">Stampa</a></li>
     <li><a href="#c4-5">Tipologie dei letti</a></li>
     <li><a href="#c13-1">Update</a></li>
     <li><a href="#c1-7">Versione applicazione</a></li>
+    <li><a href="#c2-12">Vitto</a></li>
   </ul>
 </section>
 
