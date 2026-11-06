@@ -1,0 +1,56 @@
+/**/
+.ing-cliccabile { cursor: zoom-in; }
+.ing-cliccabile:focus-visible { outline: 3px solid #0b7285; outline-offset: 2px; }
+
+.ing-velo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 14, 18, .82);
+  cursor: zoom-out;
+}
+.ing-velo[hidden] { display: none; }
+html.ing-aperto, html.ing-aperto body { overflow: hidden; }
+
+.ing-cornice { margin: 0; display: flex; flex-direction: column; align-items: center; cursor: default; }
+/**/
+.ing-immagine {
+  display: block;
+  width: 80vw;
+  height: 80vh;
+  max-width: none;              /**/
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;          /**/
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .55));
+}
+.ing-didascalia {
+  max-width: 80vw;
+  margin-top: 8px;
+  color: #f0f4f8;
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  text-align: center;
+}
+.ing-chiudi {
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  font: 28px/40px system-ui, Arial, sans-serif;
+  cursor: pointer;
+}
+.ing-chiudi:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media print {
+  .ing-velo { display: none !important; }
+  .ing-cliccabile { cursor: auto; }
+}
