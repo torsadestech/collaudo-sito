@@ -5,11 +5,11 @@
 .ing-velo {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2000;               /**/
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 14, 18, .82);
+  background: rgba(10, 14, 18, .9);   /**/
   cursor: zoom-out;
 }
 .ing-velo[hidden] { display: none; }

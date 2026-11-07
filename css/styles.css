@@ -1612,6 +1612,10 @@ html.modo-rubrica .rubrica-spenta:not([hidden]) ~ #rubricaPanel { display: none 
 .manuale-chiudi { background: none; border: none; color: #fff; font-size: 1.3rem; line-height: 1; padding: 0 2px; opacity: .85; cursor: pointer; }
 .manuale-cornice { flex: 1; width: 100%; border: none; }
 .manuale-gesto .manuale-cornice { pointer-events: none; }
+/**/
+.manuale-velo-gesto { position: fixed; inset: 0; z-index: 9600; cursor: grabbing; background: transparent; touch-action: none; }
+.manuale-velo-gesto.manuale-velo-misura { cursor: nwse-resize; }
+html.manuale-gesto-attivo, html.manuale-gesto-attivo body { user-select: none; -webkit-user-select: none; }
 .manuale-angolo {
   position: absolute;
   right: 0;

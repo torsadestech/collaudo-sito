@@ -13,7 +13,8 @@
   --avviso-bordo: #c62828;
 }
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overscroll-behavior: contain; }
+body { overscroll-behavior: contain; }
 body {
   margin: 0;
   background: var(--sfondo);
