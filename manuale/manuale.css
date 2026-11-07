@@ -51,6 +51,7 @@ a { color: var(--accento); }
   padding: 14px 22px;
 }
 .indice h2 { margin: 4px 0 8px; font-size: 1.15rem; }
+.indice-cerca { margin: 0 0 8px; color: var(--tenue); font-size: .92em; }
 .indice ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
 .indice li { margin: 3px 0; break-inside: avoid; }
 .capitolo {
@@ -117,7 +118,7 @@ dd { margin: 0 0 4px 0; color: var(--tenue); }
   body { background: #fff; font-size: 10pt; line-height: 1.4; }
   .testata { background: #fff; color: var(--testo); padding: 0 0 8px; border-bottom: 2px solid var(--primario); }
   .testata .sotto { opacity: 1; }
-  .azioni { display: none; }
+  .azioni, .indice-cerca { display: none; }
   .indice { border: 0; padding: 0; margin-top: 10px; }
   .capitolo { break-before: page; page-break-before: always; margin-top: 0; }
   #c1 { break-before: auto; page-break-before: auto; }

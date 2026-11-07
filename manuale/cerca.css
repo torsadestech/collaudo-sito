@@ -1,0 +1,116 @@
+/**/
+:root {
+  --cerca-sfondo: #ffffff;
+  --cerca-bordo: #d9e2ec;
+  --cerca-testo: #1f2933;
+  --cerca-tenue: #52606d;
+  --cerca-accento: #0b7285;
+  --cerca-attiva: #e3f4f6;
+  --cerca-segno: #fff1a8;
+  --cerca-altezza: 56px;
+}
+@media screen {
+  /**/
+  .cerca-barra {
+    position: sticky;
+    top: 0;
+    z-index: 45;                     /**/
+    box-sizing: border-box;
+    min-height: var(--cerca-altezza);
+    padding: 9px 16px;
+    background: var(--cerca-sfondo);
+    border-bottom: 1px solid var(--cerca-bordo);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+    font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--cerca-testo);
+  }
+  .cerca-dentro { position: relative; max-width: 828px; margin: 0 auto; }
+  .cerca-campo {
+    box-sizing: border-box;
+    width: 100%;
+    height: 38px;
+    padding: 6px 40px 6px 36px;
+    border: 1px solid var(--cerca-bordo);
+    border-radius: 19px;
+    background: #f5f7fa;
+    color: var(--cerca-testo);
+    font: 16px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;   /**/
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  /**/
+  .cerca-lente { position: absolute; top: 11px; left: 13px; width: 16px; height: 16px; pointer-events: none; }
+  .cerca-lente::before { content: ""; position: absolute; top: 0; left: 0; width: 9px; height: 9px; border: 2px solid var(--cerca-tenue); border-radius: 50%; }
+  .cerca-lente::after { content: ""; position: absolute; top: 11px; left: 9px; width: 6px; height: 2px; background: var(--cerca-tenue); border-radius: 1px; transform: rotate(45deg); transform-origin: 0 50%; }
+  .cerca-campo::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+  .cerca-campo:focus { outline: none; border-color: var(--cerca-accento); background-color: #fff; box-shadow: 0 0 0 3px rgba(11, 114, 133, .18); }
+  .cerca-svuota {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cerca-tenue);
+    font: 22px/30px system-ui, Arial, sans-serif;
+    cursor: pointer;
+  }
+  .cerca-svuota:hover, .cerca-svuota:focus-visible { background: #e9eef3; outline: none; }
+  .cerca-svuota[hidden] { display: none; }
+
+  /**/
+  .cerca-pannello {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    max-height: min(65vh, 520px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--cerca-sfondo);
+    border: 1px solid var(--cerca-bordo);
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .16);
+  }
+  .cerca-pannello[hidden] { display: none; }
+  .cerca-stato { margin: 0; padding: 8px 14px 6px; color: var(--cerca-tenue); font-size: .86em; }
+  .cerca-stato:empty { display: none; }
+  .cerca-voce {
+    display: block;
+    padding: 8px 14px 9px;
+    border-top: 1px solid #edf1f5;
+    color: var(--cerca-testo);
+    text-decoration: none;
+  }
+  .cerca-voce.cerca-attiva { background: var(--cerca-attiva); }
+  .cerca-voce-titolo { display: block; font-weight: 650; color: var(--cerca-accento); }
+  .cerca-voce-capitolo { display: block; color: var(--cerca-tenue); font-size: .8em; }
+  .cerca-voce-testo { display: block; margin-top: 2px; color: var(--cerca-tenue); font-size: .9em; }
+  .cerca-segno { background: var(--cerca-segno); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+  /**/
+  html.cerca-pronto main [id] { scroll-margin-top: calc(var(--cerca-altezza) + 12px); }
+  .cerca-arrivo { animation: cerca-arrivo 2s ease-out; }
+  @keyframes cerca-arrivo { 0%, 35% { box-shadow: 0 0 0 3px var(--cerca-accento); } 100% { box-shadow: 0 0 0 3px transparent; } }
+
+  /**/
+  html.cerca-pronto.il-pronto body,
+  html.cerca-pronto.il-pronto:not(.il-aperto) body { padding-top: 0; }
+  html.cerca-pronto.il-pronto:not(.il-aperto) .cerca-barra { padding-left: 132px; }
+}
+@media screen and (max-width: 899.98px) {
+  html.cerca-pronto.il-pronto .cerca-barra { padding-left: 132px; }
+}
+@media screen and (max-width: 420px) {
+  .cerca-barra { padding-right: 10px; }
+  html.cerca-pronto.il-pronto .cerca-barra, html.cerca-pronto.il-pronto:not(.il-aperto) .cerca-barra { padding-left: 122px; }
+  .cerca-pannello { left: -112px; right: -2px; max-height: 70vh; }
+}
+
+/**/
+@media print {
+  .cerca-barra { display: none !important; }
+}
