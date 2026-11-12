@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Manuale Utente delle Consegne</title>
 <link rel="stylesheet" href="manuale.css">
+<!---->
+<script src="moduli.js" data-spenti-se-mancano="aiuto" defer></script>
 <link rel="stylesheet" href="indice-laterale.css">
 <script src="indice-laterale.js" defer></script>
 <link rel="stylesheet" href="ingrandisci.css">
@@ -18,8 +20,8 @@
 <body>
 <header class="testata">
   <h1>Manuale Utente del Sistema Consegne</h1>
-  <p class="sotto">Come usare il programma, dall'accesso all'ultima funzione. Ogni funzione ha il suo capitoletto.</p>
-  <p class="azioni"><a class="btn" href="manuale-consegne.pdf" download>Scarica il PDF</a> <a class="btn chiaro solo-fuori-cornice" href="../">Torna alle consegne</a></p>
+  <p class="sotto">Come usare il programma, dall'accesso all'ultima funzione. Ogni funzione ha il suo capitoletto, e qui trovi solo quelle attive nel tuo reparto.</p>
+  <p class="azioni"><a class="btn" href="manuale-consegne.pdf" download data-pdf-completo>Scarica il PDF</a> <a class="btn chiaro solo-fuori-cornice" href="../">Torna alle consegne</a></p>
 </header>
 
 <nav class="indice" aria-label="Indice">
@@ -30,16 +32,16 @@
     <li><a href="#c2">Scrivere nelle schede</a></li>
     <li><a href="#c3">I Problemi Attivi</a></li>
     <li><a href="#c4">I letti</a></li>
-    <li><a href="#c5">Dati da TrakCare</a></li>
-    <li><a href="#c6">Le scale di valutazione</a></li>
-    <li><a href="#c7">La mail di dimissione</a></li>
-    <li><a href="#c8">Numeri Telefono</a></li>
-    <li><a href="#c9">Stampare</a></li>
-    <li><a href="#c10">Archivio e backup</a></li>
-    <li><a href="#c11">Help Desk</a></li>
-    <li><a href="#c12">Altre voci del menu</a></li>
-    <li><a href="#c13">Aggiornamenti e problemi comuni</a></li>
-    <li><a href="#c14">Indice delle funzioni e glossario</a></li>
+    <li value="5" data-modulo="terapia laboratorio"><a href="#c5">Dati da TrakCare</a></li>
+    <li value="6" data-modulo="scale"><a href="#c6">Le scale di valutazione</a></li>
+    <li value="7" data-modulo="dimissioni"><a href="#c7">La mail di dimissione</a></li>
+    <li value="8" data-modulo="rubrica"><a href="#c8">Numeri Telefono</a></li>
+    <li value="9"><a href="#c9">Stampare</a></li>
+    <li value="10"><a href="#c10">Archivio e backup</a></li>
+    <li value="11" data-modulo="aiuto"><a href="#c11">Help Desk</a></li>
+    <li value="12"><a href="#c12">Altre voci del menu</a></li>
+    <li value="13"><a href="#c13">Aggiornamenti e problemi comuni</a></li>
+    <li value="14"><a href="#c14">Indice delle funzioni e glossario</a></li>
   </ol>
 </nav>
 
@@ -50,75 +52,77 @@
 
 <section class="cap" id="c1-1">
   <h3>1.1 Che cos'è il Sistema Consegne</h3>
-  <p class="serve">Serve a tenere le consegne del reparto: una scheda per ogni letto, uguale su tutti i PC.</p>
+  <p class="serve">Il Sistema Consegne tiene le consegne del reparto: una scheda per ogni letto, uguale su tutti i PC. Sostituisce il foglio delle consegne e lo tiene sempre aggiornato.</p>
   <ul>
-    <li>Quello che scrivi su un PC compare sugli altri dopo pochi secondi.</li>
+    <li>Quello che scrivi su un PC compare sugli altri dopo pochi secondi, senza bisogno di ricaricare la pagina.</li>
     <li>Ogni scheda ha le colonne «Diagnosi», «Problemi attivi», «Esami», «Da fare», «Diaria ed epicrisi» e «Note e terapia».</li>
-    <li>Il programma salva da solo: non c'è un pulsante «Salva» da ricordarsi.</li>
+    <li>Il programma salva da solo mentre scrivi, quindi non c'è un pulsante «Salva» da ricordarsi.</li>
   </ul>
   <figure><img src="img/06-matita.webp" alt="La scheda di un letto" loading="lazy"><figcaption>Una scheda: il numero del letto, il paziente e le sue colonne.</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-2">
   <h3>1.2 Da dove si apre</h3>
-  <p class="serve">Il programma si apre dal browser, sui PC del reparto e anche dal telefono.</p>
+  <p class="serve">Il programma si apre dal browser, sui PC del reparto e anche dal telefono: non c'è nulla da installare.</p>
   <ol>
-    <li>Apri il segnalibro delle consegne che trovi nel browser del reparto: porta da solo all'indirizzo giusto.</li>
-    <li>Dal telefono funziona allo stesso modo: il menu si apre con il pulsante a tre righe in alto.</li>
+    <li>Apri il segnalibro delle consegne che trovi nel browser del reparto: ti porta da solo all'indirizzo giusto.</li>
+    <li>Dal telefono funziona allo stesso modo; il menu si apre con il pulsante a tre righe in alto.</li>
   </ol>
-  <p class="att">Attenzione: non salvare la pagina in altri modi. Usa sempre il segnalibro o l'indirizzo qui sopra.</p>
+  <p class="att">Attenzione: non salvare la pagina in altri modi. Usa sempre il segnalibro, che porta sempre all'indirizzo in uso.</p>
   <figure class="telefono"><img src="img/50-menu-telefono.webp" alt="Il menu dal telefono" loading="lazy"><figcaption>Dal telefono il menu si apre con il pulsante a tre righe.</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-3">
   <h3>1.3 Entrare: «Accedi con Google»</h3>
-  <p class="serve">Si entra con l'account Google del reparto, una volta per ogni PC.</p>
+  <p class="serve">Per entrare si usa l'account Google del reparto. Lo si fa una volta per ogni PC: poi il PC resta collegato.</p>
   <ol>
-    <li>Premi «Accedi con Google».</li>
+    <li>Premi «Accedi con Google»: si apre la scelta dell'account.</li>
     <li>Scegli l'account del reparto, quello scritto sopra il pulsante.</li>
-    <li>Le consegne compaiono da sole. La volta dopo il PC è già collegato.</li>
+    <li>Le consegne compaiono da sole, e la volta dopo il PC è già collegato.</li>
   </ol>
-  <p class="att">Attenzione: entra solo con l'account del reparto. Un altro account viene rifiutato.</p>
+  <p class="att">Attenzione: entra solo con l'account del reparto; un altro account viene rifiutato.</p>
   <figure><img src="img/01-accesso.webp" alt="La schermata di accesso" loading="lazy"><figcaption>La schermata di accesso, con il pulsante «Accedi con Google».</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-4">
   <h3>1.4 La schermata principale</h3>
-  <p class="serve">In alto c'è la barra dei menu, sotto le schede dei letti una dopo l'altra.</p>
+  <p class="serve">In alto c'è la barra dei menu, e sotto le schede dei letti, una dopo l'altra. Da qui parte tutto il lavoro.</p>
   <ul>
-    <li>A sinistra: «Lista Pazienti», «Letti», «Visualizza», «Stampa», «Archivio», «Link Utili», «Numeri Telefono», «Help Desk».</li>
-    <li>A destra: la spia «PC OK», l'ora dell'ultimo aggiornamento e la rotellina delle impostazioni.</li>
-    <li>Toccando il nome delle consegne, in alto a sinistra, la pagina rilegge i dati.</li>
+    <li>A sinistra ci sono i menu «Lista Pazienti», «Letti», «Visualizza», «Stampa», «Archivio» e «Link Utili».</li>
+    <li data-modulo="rubrica">«Numeri Telefono» apre la rubrica dell'ospedale (capitolo <a href="#c8">8</a>).</li>
+    <li data-modulo="aiuto">«Help Desk» serve a segnalare un problema e apre anche questo manuale (capitolo <a href="#c11">11</a>).</li>
+    <li>A destra ci sono la spia «PC OK», l'ora dell'ultimo aggiornamento e la rotellina delle impostazioni.</li>
+    <li>Se tocchi il nome delle consegne, in alto a sinistra, la pagina rilegge subito i dati.</li>
   </ul>
   <figure><img src="img/02-schermata.webp" alt="La schermata principale" loading="lazy"><figcaption>La barra dei menu e la prima scheda.</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-5">
   <h3>1.5 «Lista Pazienti»</h3>
-  <p class="serve">Mostra tutti i letti con il paziente e la tipologia, per arrivare subito alla scheda giusta.</p>
+  <p class="serve">«Lista Pazienti» mostra tutti i letti con il paziente e la tipologia, e ti porta subito alla scheda giusta senza scorrere la pagina.</p>
   <ol>
-    <li>Premi «Lista Pazienti» nella barra in alto.</li>
+    <li>Premi «Lista Pazienti» nella barra in alto: si apre l'elenco dei letti.</li>
     <li>Tocca un letto: la pagina scorre fino alla sua scheda.</li>
   </ol>
-  <p>Le icone accanto al nome indicano isolamento, dimissione e indicazioni di rianimazione.</p>
+  <p>Le icone accanto al nome dicono se il paziente è in isolamento, in dimissione o ha indicazioni di rianimazione.</p>
   <figure><img src="img/03-lista-pazienti.webp" alt="Il menu Lista Pazienti" loading="lazy"><figcaption>«Lista Pazienti»: letto, paziente, tipologia.</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-6">
   <h3>1.6 Il riepilogo dei letti</h3>
-  <p class="serve">Conta i letti per sesso, per tipologia e per stato.</p>
+  <p class="serve">Il riepilogo conta i letti per sesso, per tipologia e per stato: serve a sapere in un colpo d'occhio come è messo il reparto.</p>
   <ol>
-    <li>Premi «Letti» nella barra in alto.</li>
-    <li>In fondo al menu, sotto «Riepilogo Letti», trovi i conti: letti vuoti, in dimissione, in isolamento, con note di rianimazione.</li>
+    <li>Premi «Letti» nella barra in alto: si apre il menu dei letti.</li>
+    <li>In fondo, sotto «Riepilogo Letti», leggi i conti: letti vuoti, in dimissione, in isolamento e con note di rianimazione.</li>
   </ol>
   <figure><img src="img/05-riepilogo-letti.webp" alt="Il riepilogo dei letti" loading="lazy"><figcaption>Il riquadro «Riepilogo Letti» nel menu «Letti».</figcaption></figure>
 </section>
 
 <section class="cap" id="c1-7">
   <h3>1.7 Che versione ho?</h3>
-  <p class="serve">Serve quando segnali un problema: dice quale versione del programma usa il tuo PC.</p>
+  <p class="serve">La versione dice quale aggiornamento del programma sta usando il tuo PC. Serve soprattutto quando segnali un problema.</p>
   <ol>
-    <li>Premi la rotellina in alto a destra.</li>
+    <li>Premi la rotellina in alto a destra: si apre il menu delle impostazioni.</li>
     <li>In fondo al menu leggi «Versione applicazione»: è un numero, per esempio 213.</li>
   </ol>
   <figure><img src="img/04-versione.webp" alt="La versione nel menu della rotellina" loading="lazy"><figcaption>La riga «Versione applicazione» nel menu della rotellina.</figcaption></figure>
@@ -129,12 +133,12 @@
 
 <section class="cap" id="c2-1">
   <h3>2.1 Aprire una scheda in modifica</h3>
-  <p class="serve">Le schede si leggono sempre; per scriverci si apre la scheda in modifica.</p>
+  <p class="serve">Le schede si leggono sempre, ma per scriverci bisogna aprirle in modifica. Così nessuno cambia una scheda per sbaglio.</p>
   <ol>
     <li>Passa con il mouse sulla scheda: accanto al numero del letto compare la matita gialla.</li>
     <li>Premi la matita: la scheda si apre a tutto schermo, con una barra di pulsanti in ogni colonna.</li>
-    <li>Scrivi nelle colonne come in un documento.</li>
-    <li>Per chiudere tocca fuori dalla scheda, nella parte scura.</li>
+    <li>Scrivi nelle colonne come in un documento; il testo si salva da solo.</li>
+    <li>Per chiudere tocca fuori dalla scheda, nella parte scura: la scheda torna al suo posto.</li>
   </ol>
   <p class="att">Attenzione: dopo 5 minuti senza toccare nulla la scheda si chiude e salva da sola.</p>
   <p>Nome, allergie, date, codice sanitario e sesso stanno nella colonna di sinistra: vedi da <a href="#c2-10">2.10</a> a <a href="#c2-13">2.13</a>.</p>
@@ -143,21 +147,21 @@
 
 <section class="cap" id="c2-2">
   <h3>2.2 Il salvataggio</h3>
-  <p class="serve">Quello che scrivi si salva da solo, pochi secondi dopo che hai smesso di scrivere.</p>
+  <p class="serve">Quello che scrivi si salva da solo, pochi secondi dopo che hai smesso di scrivere, e arriva subito agli altri PC.</p>
   <ul>
-    <li>Il pulsante con il dischetto, in alto a sinistra della scheda aperta, è «Salva ora»: salva subito.</li>
-    <li>Quando chiudi la scheda il programma salva comunque le ultime modifiche.</li>
+    <li>Il dischetto in alto a sinistra della scheda aperta è «Salva ora»: premilo e il testo si salva subito.</li>
+    <li>Quando chiudi la scheda, il programma salva comunque le ultime modifiche.</li>
   </ul>
-  <p class="att">Attenzione: non chiudere il browser mentre stai ancora scrivendo; prima chiudi la scheda.</p>
+  <p class="att">Attenzione: non chiudere il browser mentre stai ancora scrivendo; prima chiudi la scheda, così il salvataggio arriva a destinazione.</p>
   <figure><img src="img/07-salva.webp" alt="Il pulsante Salva ora" loading="lazy"><figcaption>Il dischetto «Salva ora» nella scheda aperta.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-3">
   <h3>2.3 Quando un collega sta scrivendo</h3>
-  <p class="serve">Una scheda la modifica un PC alla volta, così due colleghi non si cancellano il lavoro.</p>
+  <p class="serve">Una scheda la modifica un PC alla volta: così due colleghi non si cancellano il lavoro a vicenda.</p>
   <ul>
-    <li>Se un altro PC ha la scheda aperta, sugli altri compare «In aggiornamento» con il lucchetto.</li>
-    <li>Aspetta che il collega chiuda la scheda: il lucchetto sparisce da solo.</li>
+    <li>Se un altro PC ha la scheda aperta, sugli altri compare «In aggiornamento» con il lucchetto, e la matita non c'è.</li>
+    <li>Aspetta che il collega chiuda la scheda: il lucchetto sparisce da solo e puoi aprirla tu.</li>
     <li>Se il collega se ne dimentica, dopo 10 minuti senza modifiche la scheda torna libera.</li>
   </ul>
   <figure><img src="img/08-bloccata.webp" alt="Una scheda in aggiornamento su un altro PC" loading="lazy"><figcaption>La scheda è aperta su un altro PC: «In aggiornamento».</figcaption></figure>
@@ -165,33 +169,33 @@
 
 <section class="cap" id="c2-4">
   <h3>2.4 Grassetto, corsivo, sottolineato, dimensione, evidenzia</h3>
-  <p class="serve">Servono a mettere in risalto una parte del testo.</p>
+  <p class="serve">Questi pulsanti mettono in risalto una parte del testo, per esempio una cosa urgente da fare.</p>
   <ol>
     <li>Con la scheda aperta, seleziona la parola o la frase.</li>
-    <li>Nella barra della colonna premi B (grassetto), I (corsivo) o U (sottolineato).</li>
-    <li>«AA» cambia la dimensione del testo; l'evidenziatore giallo colora lo sfondo, con «Rimuovi evidenziazione» per toglierlo.</li>
+    <li>Nella barra della colonna premi B (grassetto), I (corsivo) o U (sottolineato): il testo selezionato cambia subito.</li>
+    <li>«AA» cambia la dimensione del testo; l'evidenziatore giallo colora lo sfondo, e «Rimuovi evidenziazione» lo toglie.</li>
   </ol>
   <figure><img src="img/09-formattazione.webp" alt="I pulsanti di formattazione" loading="lazy"><figcaption>B, I, U, dimensione del testo ed evidenziatore.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-5">
   <h3>2.5 «Aggiungi data odierna»</h3>
-  <p class="serve">Scrive la data di oggi, così ogni nota ha il suo giorno.</p>
+  <p class="serve">Questo pulsante scrive la data di oggi dove si trova il cursore, così ogni nota ha il suo giorno.</p>
   <ol>
     <li>Metti il cursore dove vuoi scrivere.</li>
-    <li>Premi il «+» verde nella barra della colonna.</li>
-    <li>Nella «Diaria» compare la data in grassetto, per esempio «05/11:». In «Esami» e «Da fare» compare anche una casella da spuntare quando la cosa è fatta.</li>
+    <li>Premi il «+» verde nella barra della colonna: compare la data in grassetto, per esempio «05/11:».</li>
+    <li>In «Esami» e «Da fare» compare anche una casella: spuntala quando la cosa è fatta.</li>
   </ol>
   <figure><img src="img/10-data.webp" alt="Il pulsante Aggiungi data odierna" loading="lazy"><figcaption>Il «+» verde: «Aggiungi data odierna».</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-6">
   <h3>2.6 Recuperare un testo perso</h3>
-  <p class="serve">Se hai cancellato qualcosa per sbaglio, puoi riprendere una copia di prima della scheda.</p>
+  <p class="serve">Se hai cancellato qualcosa per sbaglio, puoi riprendere una copia della scheda fatta poco prima. Le copie stanno su questo PC.</p>
   <ol>
-    <li>Con la scheda aperta premi l'orologio blu, «Recupera dati da snapshot precedente».</li>
-    <li>Scorri le copie salvate su questo PC: ognuna ha giorno e ora.</li>
-    <li>Premi «Ripristina questo snapshot» sulla copia giusta, oppure «Annulla».</li>
+    <li>Con la scheda aperta premi l'orologio blu, «Recupera dati da snapshot precedente»: si apre «Recupero dati».</li>
+    <li>Scorri le copie salvate: ognuna ha giorno e ora.</li>
+    <li>Premi «Ripristina questo snapshot» sulla copia giusta: la scheda torna com'era in quel momento. «Annulla» chiude senza cambiare nulla.</li>
   </ol>
   <p class="att">Attenzione: il ripristino sostituisce il testo attuale della scheda con quello della copia.</p>
   <figure><img src="img/11-snapshot.webp" alt="La finestra Recupero dati" loading="lazy"><figcaption>«Recupero dati»: le copie della scheda con giorno e ora.</figcaption></figure>
@@ -199,81 +203,83 @@
 
 <section class="cap" id="c2-7">
   <h3>2.7 Isolamento</h3>
-  <p class="serve">Segnala un paziente in isolamento, con il tipo di isolamento.</p>
+  <p class="serve">Segnala a tutti che il paziente è in isolamento, e di che tipo. Il segno si vede sulla scheda e nella «Lista Pazienti».</p>
   <ol>
     <li>Con la scheda aperta premi l'icona verde del virus nella barra della «Diaria».</li>
     <li>Scrivi il tipo, per esempio «da contatto» o «droplet», e premi «Attiva isolamento».</li>
-    <li>In cima alla «Diaria» compare il riquadro dell'isolamento, e il virus accanto al numero del letto.</li>
-    <li>Per toglierlo tocca il riquadro con la scheda aperta.</li>
+    <li>In cima alla «Diaria» compare il riquadro dell'isolamento, e accanto al numero del letto il virus.</li>
+    <li>Per toglierlo, tocca il riquadro con la scheda aperta e conferma.</li>
   </ol>
   <figure><img src="img/12-isolamento.webp" alt="Attivare l'isolamento" loading="lazy"><figcaption>«Attivare isolamento?»: si scrive il tipo.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-8">
   <h3>2.8 Indicazioni di rianimazione</h3>
-  <p class="serve">Annota se il paziente è da rianimare oppure no, con le eventuali note.</p>
+  <p class="serve">Annota se il paziente è da rianimare oppure no, con le eventuali note, in modo che chiunque apra la scheda lo veda subito.</p>
   <ol>
     <li>Con la scheda aperta premi il cuore rosso nella barra della «Diaria».</li>
     <li>Scrivi l'indicazione, per esempio «DA RIANIMARE» oppure «NON RIANIMARE (DNR)».</li>
-    <li>Premi «Salva»: l'indicazione resta in cima alla «Diaria».</li>
+    <li>Premi «Salva»: l'indicazione resta in cima alla «Diaria» e compare nella «Lista Pazienti».</li>
   </ol>
   <figure><img src="img/13-rianimazione.webp" alt="Indicazioni rianimazione" loading="lazy"><figcaption>«Indicazioni rianimazione».</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-9">
   <h3>2.9 «Dimissibile»</h3>
-  <p class="serve">Segna il paziente in dimissione, con la data prevista.</p>
+  <p class="serve">Segna il paziente in dimissione, con la data prevista. Serve a chi organizza i letti e compare nel riepilogo.</p>
   <ol>
-    <li>Con la scheda aperta tocca la casella «Dimissibile», sotto i dati del paziente.</li>
+    <li>Con la scheda aperta tocca la casella «Dimissibile», sotto i dati del paziente: si apre «Imposta data di dimissione».</li>
     <li>Scrivi la data in qualsiasi forma (150526, 15/05/26…) oppure una parola come «possibile».</li>
-    <li>Premi «Conferma». Il paziente compare fra le dimissioni della mail e del riepilogo.</li>
+    <li>Premi «Conferma»: la data compare nella scheda e il paziente entra fra le dimissioni del riepilogo dei letti.</li>
   </ol>
-  <p class="att">Attenzione: con la scheda chiusa la casella non si cambia; il programma te lo ricorda.</p>
+  <p data-modulo="dimissioni">Lo stesso paziente si può includere nella mail di dimissione (<a href="#c7-1">7.1</a>).</p>
+  <p class="att">Attenzione: con la scheda chiusa la casella non si cambia, e il programma te lo ricorda.</p>
   <figure><img src="img/14-dimissibile.webp" alt="Imposta data di dimissione" loading="lazy"><figcaption>«Imposta data di dimissione».</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-10">
   <h3>2.10 Nome e allergie</h3>
-  <p class="serve">I dati del paziente stanno nella colonna di sinistra della scheda, sotto il numero del letto.</p>
+  <p class="serve">I dati del paziente stanno nella colonna di sinistra della scheda, sotto il numero del letto. Si scrivono come gli altri campi, a scheda aperta.</p>
   <ol>
     <li>Apri la scheda in modifica (<a href="#c2-1">2.1</a>).</li>
-    <li>Sotto il numero del letto scrivi cognome e nome, come in TrakCare (per esempio «ROSSI MARIO»).</li>
-    <li>Sotto «Allergie» scrivi le allergie note, oppure «Nega allergie».</li>
+    <li>Sotto il numero del letto scrivi cognome e nome come in TrakCare, per esempio «ROSSI MARIO».</li>
+    <li>Sotto «Allergie» scrivi le allergie note, oppure «Nega allergie»: il testo si salva da solo.</li>
   </ol>
-  <p class="att">Attenzione: l'importazione di terapia ed esami controlla che il nome sia lo stesso di TrakCare (<a href="#c5-2">5.2</a>).</p>
+  <p class="att" data-modulo="terapia laboratorio">Attenzione: l'importazione da TrakCare controlla che il nome sia lo stesso di TrakCare (<a href="#c5">capitolo 5</a>).</p>
   <figure><img src="img/06b-nome-allergie.webp" alt="Nome e allergie nella scheda aperta" loading="lazy"><figcaption>Nome e allergie, a scheda aperta.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-11">
   <h3>2.11 Data di nascita ed età</h3>
+  <p class="serve">Dalla data di nascita il programma calcola l'età da solo, così non va aggiornata a mano.</p>
   <ol>
     <li>A scheda aperta tocca «Data di Nascita» e scrivi solo le cifre: le barre si mettono da sole (12111965 diventa 12/11/1965).</li>
     <li>Va bene anche l'anno a due cifre (121165).</li>
-    <li>Esci dal campo: l'età si calcola da sola e non si può cambiare a mano.</li>
+    <li>Esci dal campo: l'età si calcola da sola, e da quel momento non si cambia a mano.</li>
   </ol>
-  <p>Senza data di nascita, l'età si può scrivere a mano. Una data che non esiste diventa rossa, con il motivo.</p>
+  <p>Senza data di nascita l'età si può scrivere a mano. Una data che non esiste diventa rossa, con il motivo.</p>
   <figure class="telefono"><img src="img/06c-data-nascita.webp" alt="Data di nascita ed età" loading="lazy"><figcaption>«Data di Nascita» ed «Età», calcolata da sola.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-12">
   <h3>2.12 Ricovero, codice sanitario, ossigeno e vitto</h3>
+  <p class="serve">Questi campi completano i dati del paziente. Si scrivono a scheda aperta e si salvano da soli (<a href="#c2-2">2.2</a>).</p>
   <ul>
-    <li>«Ricovero»: la data del ricovero, scritta come quella di nascita. «Giorni di Ricovero» si conta da solo.</li>
-    <li>«C.S.»: il codice sanitario del paziente.</li>
-    <li>«Ossigeno»: per esempio «CN 4 lt/min»; «Vitto»: per esempio «completo», «diabetico», «senza scorie».</li>
+    <li>In «Ricovero» scrivi la data del ricovero, come quella di nascita: «Giorni di Ricovero» si conta da solo.</li>
+    <li>In «C.S.» scrivi il codice sanitario del paziente.</li>
+    <li>In «Ossigeno» scrivi per esempio «CN 4 lt/min», e in «Vitto» per esempio «completo», «diabetico» o «senza scorie».</li>
   </ul>
-  <p>Tutti si scrivono a scheda aperta e si salvano da soli (<a href="#c2-2">2.2</a>).</p>
   <figure class="telefono"><img src="img/06d-ricovero-cs.webp" alt="Ricovero, codice sanitario, ossigeno e vitto" loading="lazy"><figcaption>Ricovero, giorni di ricovero, C.S., ossigeno e vitto.</figcaption></figure>
 </section>
 
 <section class="cap" id="c2-13">
   <h3>2.13 Il sesso del paziente</h3>
-  <p class="serve">L'iconcina accanto al numero del letto dice il sesso del paziente.</p>
+  <p class="serve">L'iconcina accanto al numero del letto dice il sesso del paziente. Conta nel riepilogo dei letti (<a href="#c1-6">1.6</a>) e colora il numero del letto in «Lista Pazienti».</p>
   <ol>
     <li>Apri la scheda in modifica.</li>
-    <li>Clicca sull'iconcina accanto al numero del letto: a ogni clic passa a maschio (♂ azzurro), femmina (♀ rosa), niente (⊘ grigio), e di nuovo da capo.</li>
+    <li>Clicca sull'iconcina accanto al numero del letto: a ogni clic passa a maschio (♂ azzurro), femmina (♀ rosa), niente (⊘ grigio), e poi di nuovo da capo.</li>
   </ol>
-  <p>«Niente» è lo stato di partenza: un letto svuotato (<a href="#c4-1">4.1</a>) torna sempre a «niente». Il sesso conta nel riepilogo dei letti (<a href="#c1-6">1.6</a>) e colora il numero del letto in «Lista Pazienti».</p>
+  <p>«Niente» è lo stato di partenza: un letto svuotato (<a href="#c4-1">4.1</a>) torna sempre a «niente».</p>
   <p class="att">Attenzione: con la scheda chiusa il clic sull'iconcina non fa nulla.</p>
   <figure><img src="img/06f-sesso-stati.webp" alt="I tre stati dell'icona del sesso" loading="lazy"><figcaption>Niente, maschio, femmina: un clic per passare al successivo.</figcaption></figure>
 </section>
@@ -283,23 +289,23 @@
 
 <section class="cap" id="c3-1">
   <h3>3.1 Aggiungere un problema</h3>
-  <p class="serve">«Problemi attivi» è un elenco puntato: si riempie solo con i pulsanti, così resta in ordine.</p>
+  <p class="serve">«Problemi attivi» è un elenco puntato dei problemi del paziente. Si riempie solo con i pulsanti, così resta sempre in ordine e leggibile.</p>
   <ol>
     <li>Apri la scheda in modifica.</li>
-    <li>Nella colonna «Problemi attivi» premi il «+» verde.</li>
-    <li>Scrivi il problema, per esempio «Scompenso cardiaco», e premi «Aggiungi».</li>
+    <li>Nella colonna «Problemi attivi» premi il «+» verde: si apre «Nuovo problema attivo».</li>
+    <li>Scrivi il problema, per esempio «Scompenso cardiaco», e premi «Aggiungi»: compare in fondo all'elenco.</li>
   </ol>
-  <p class="att">Attenzione: in questa colonna non si scrive a mano e non si incolla: usa sempre il «+».</p>
+  <p class="att">Attenzione: in questa colonna non si scrive a mano e non si incolla; usa sempre il «+».</p>
   <figure><img src="img/16-problema-nuovo.webp" alt="Nuovo problema attivo" loading="lazy"><figcaption>«Nuovo problema attivo».</figcaption></figure>
 </section>
 
 <section class="cap" id="c3-2">
   <h3>3.2 Modificare o togliere un problema</h3>
-  <p class="serve">Ogni riga ha i suoi due pulsanti.</p>
+  <p class="serve">Ogni riga dell'elenco ha i suoi due pulsanti, per correggerla o toglierla quando il problema è risolto.</p>
   <ol>
     <li>Apri la scheda in modifica.</li>
     <li>Accanto alla riga premi la matita per correggerla, oppure il cestino per toglierla.</li>
-    <li>Conferma nella finestra che compare.</li>
+    <li>Conferma nella finestra che compare: l'elenco si aggiorna subito.</li>
   </ol>
   <figure><img src="img/15-problemi.webp" alt="I pulsanti dei Problemi Attivi" loading="lazy"><figcaption>Il «+» per aggiungere, matita e cestino su ogni riga.</figcaption></figure>
 </section>
@@ -309,37 +315,37 @@
 
 <section class="cap" id="c4-1">
   <h3>4.1 Dimettere o svuotare un letto</h3>
-  <p class="serve">Libera il letto quando il paziente va via.</p>
+  <p class="serve">Quando il paziente va via, si libera il letto: la scheda si svuota ed è pronta per il paziente successivo.</p>
   <ol>
-    <li>Menu «Letti» → «Dimetti / Svuota Letto».</li>
-    <li>Scegli il letto e premi «Dimetti».</li>
-    <li>Conferma con «Sì, svuota». La scheda resta vuota, pronta per un nuovo paziente.</li>
+    <li>Apri il menu «Letti» e scegli «Dimetti / Svuota Letto».</li>
+    <li>Scegli il letto e premi «Dimetti»: il programma chiede conferma.</li>
+    <li>Premi «Sì, svuota»: la scheda resta vuota, pronta per un nuovo paziente.</li>
   </ol>
-  <p class="att">Attenzione: il contenuto non si recupera dalla scheda; resta solo nei backup dell'«Archivio».</p>
+  <p class="att">Attenzione: il contenuto non si recupera dalla scheda; resta solo nei backup dell'«Archivio» (<a href="#c10-1">10.1</a>).</p>
   <figure><img src="img/17-dimetti.webp" alt="Dimetti o svuota letto" loading="lazy"><figcaption>«Dimetti / Svuota Letto».</figcaption></figure>
 </section>
 
 <section class="cap" id="c4-2">
   <h3>4.2 Spostare o scambiare due pazienti</h3>
-  <p class="serve">Porta un paziente in un altro letto, con tutta la sua scheda ed i suoi esami.</p>
+  <p class="serve">Porta un paziente in un altro letto con tutta la sua scheda<span data-modulo="laboratorio"> e i suoi esami</span>, senza riscrivere nulla.</p>
   <ol>
-    <li>Menu «Letti» → «Sposta / Scambia».</li>
+    <li>Apri il menu «Letti» e scegli «Sposta / Scambia».</li>
     <li>Scegli il «Letto di Origine» e il «Letto di Destinazione», poi premi «Sposta».</li>
-    <li>Se la destinazione è vuota conferma con «Sì, sposta».</li>
-    <li>Se è occupata, i due pazienti si scambiano: conferma con «Sì, scambia».</li>
+    <li>Se la destinazione è vuota, conferma con «Sì, sposta»: il paziente passa nel letto nuovo.</li>
+    <li>Se è occupata, i due pazienti si scambiano di posto: conferma con «Sì, scambia».</li>
   </ol>
-  <p class="att">Attenzione: se uno dei due letti è aperto in modifica su un altro PC, lo spostamento aspetta.</p>
+  <p class="att">Attenzione: se uno dei due letti è aperto in modifica su un altro PC, lo spostamento aspetta che si chiuda.</p>
   <figure><img src="img/18-sposta.webp" alt="Sposta o scambia paziente" loading="lazy"><figcaption>«Sposta / Scambia Paziente».</figcaption></figure>
 </section>
 
 <section class="cap" id="c4-3">
   <h3>4.3 Cambiare la tipologia di un letto</h3>
-  <p class="serve">La tipologia (per esempio «Medicina» o «Appoggio») colora il letto e serve a ordinare e stampare.</p>
+  <p class="serve">La tipologia (per esempio «Medicina» o «Appoggio») dà il colore al letto e serve a ordinare e a stampare le consegne.</p>
   <ol>
     <li>Dal menu: «Letti» → «Cambia Tipologia ad un Letto», scegli il letto e la nuova tipologia, poi premi «Applica».</li>
-    <li>Dalla scheda: aprila in modifica (<a href="#c2-1">2.1</a>) e clicca sulla tipologia scritta sotto il numero del letto. Si apre la stessa finestra, con il letto già scelto: nel menu a tendina «Nuova Tipologia» scegli fra le tipologie configurate (<a href="#c4-5">4.5</a>) e premi «Applica».</li>
+    <li>Dalla scheda: aprila in modifica (<a href="#c2-1">2.1</a>) e clicca sulla tipologia scritta sotto il numero del letto. Si apre la stessa finestra con il letto già scelto.</li>
+    <li>Nel menu a tendina «Nuova Tipologia» scegli fra le tipologie configurate (<a href="#c4-5">4.5</a>) e premi «Applica»: la scheda si chiude e salva da sola.</li>
   </ol>
-  <p>Dopo «Applica» dalla scheda, la scheda si chiude e salva da sola.</p>
   <p class="att">Attenzione: a scheda chiusa il clic sulla tipologia non fa nulla.</p>
   <figure><img src="img/19-tipologia.webp" alt="Cambia tipologia" loading="lazy"><figcaption>«Cambia Tipologia ad un Letto», dal menu «Letti».</figcaption></figure>
   <figure class="telefono"><img src="img/19b-tipologia-etichetta.webp" alt="La tipologia sotto il numero del letto" loading="lazy"><figcaption>La tipologia, sotto il numero del letto.</figcaption></figure>
@@ -348,10 +354,10 @@
 
 <section class="cap" id="c4-4">
   <h3>4.4 Aggiungere o eliminare un posto letto</h3>
-  <p class="serve">Cambia il numero dei letti delle consegne.</p>
+  <p class="serve">Cambia il numero dei letti delle consegne, per esempio quando il reparto apre un letto in più.</p>
   <ol>
-    <li>Rotellina → «Aggiungi Posto Letto»: scrivi il numero o il nome del letto e premi «Aggiungi».</li>
-    <li>Rotellina → «Elimina Posto Letto»: scegli il letto e premi «Elimina», poi «Sì, elimina».</li>
+    <li>Rotellina → «Aggiungi Posto Letto»: scrivi il numero o il nome del letto e premi «Aggiungi», e la scheda nuova compare fra le altre.</li>
+    <li>Rotellina → «Elimina Posto Letto»: scegli il letto, premi «Elimina» e poi «Sì, elimina».</li>
   </ol>
   <p class="att">Attenzione: eliminare un letto lo toglie del tutto, scheda compresa. Usalo solo per i letti che non ci sono più.</p>
   <figure><img src="img/20-letti-rotellina.webp" alt="Le voci dei letti nella rotellina" loading="lazy"><figcaption>«Aggiungi Posto Letto», «Elimina Posto Letto» e le tipologie.</figcaption></figure>
@@ -359,232 +365,233 @@
 
 <section class="cap" id="c4-5">
   <h3>4.5 Le tipologie dei letti</h3>
-  <p class="serve">Crea una tipologia nuova o cambia nome e colore a una esistente.</p>
+  <p class="serve">Qui si crea una tipologia nuova, o si cambiano nome e colore a una che c'è già. Le tipologie valgono per tutti i PC.</p>
   <ol>
-    <li>Rotellina → «Aggiungi/Modifica Tipologia Letto».</li>
-    <li>Modifica le tipologie, oppure premi «Aggiungi nuova tipologia».</li>
-    <li>Premi «Salva modifiche». Se chiudi senza salvare, il programma te lo chiede.</li>
+    <li>Rotellina → «Aggiungi/Modifica Tipologia Letto»: si apre l'elenco delle tipologie.</li>
+    <li>Modifica le tipologie che ci sono, oppure premi «Aggiungi nuova tipologia».</li>
+    <li>Premi «Salva modifiche»: i colori dei letti cambiano subito. Se chiudi senza salvare, il programma te lo chiede.</li>
   </ol>
   <figure><img src="img/20-letti-rotellina.webp" alt="La voce delle tipologie" loading="lazy"><figcaption>«Aggiungi/Modifica Tipologia Letto», nella rotellina.</figcaption></figure>
 </section>
 
 <section class="cap" id="c4-6">
   <h3>4.6 Ordinare i letti</h3>
-  <p class="serve">Cambia l'ordine delle schede sullo schermo.</p>
+  <p class="serve">Cambia l'ordine delle schede sullo schermo, per lavorare nell'ordine che ti torna più comodo.</p>
   <ol>
-    <li>Menu «Visualizza».</li>
-    <li>Scegli «Numero Letto», «Ordine Alfabetico» oppure «Tipologia Letto».</li>
+    <li>Apri il menu «Visualizza».</li>
+    <li>Scegli «Numero Letto», «Ordine Alfabetico» oppure «Tipologia Letto»: le schede si riordinano subito.</li>
   </ol>
-  <p>L'ordine scelto vale anche per la stampa, su questo PC.</p>
+  <p>L'ordine scelto vale anche per la stampa, ma solo su questo PC.</p>
   <figure><img src="img/21-ordina.webp" alt="Il menu Visualizza" loading="lazy"><figcaption>«Ordina pazienti per».</figcaption></figure>
 </section>
 
 <section class="cap" id="c4-7">
   <h3>4.7 Il nome delle consegne</h3>
-  <p class="serve">Cambia il titolo che compare in alto e nelle stampe.</p>
+  <p class="serve">Il nome delle consegne è il titolo che compare in alto e nelle stampe.</p>
   <ol>
     <li>Rotellina → «Modifica Nome Consegne».</li>
-    <li>Scrivi il nuovo nome e premi «Salva».</li>
+    <li>Scrivi il nuovo nome e premi «Salva»: il titolo cambia su tutti i PC.</li>
   </ol>
   <figure><img src="img/22-nome-archivio-impostazioni.webp" alt="Modifica nome consegne" loading="lazy"><figcaption>«Modifica Nome Consegne», nella rotellina.</figcaption></figure>
 </section>
 
 <!---->
-<h2 class="capitolo" id="c5">5. Dati da TrakCare</h2>
+<h2 class="capitolo" id="c5" data-modulo="terapia laboratorio">5. Dati da TrakCare</h2>
 
-<section class="cap" id="c5-1">
+<section class="cap" id="c5-1" data-modulo="terapia">
   <h3>5.1 Il segnalibro «Prendi Terapia Trak»</h3>
-  <p class="serve">È un pulsante nella barra dei preferiti che legge la terapia da TrakCare. Si mette una volta per PC.</p>
+  <p class="serve">«Prendi Terapia Trak» è un pulsante nella barra dei preferiti che legge la terapia da TrakCare. Si mette una volta per ogni PC.</p>
   <ol>
-    <li>Se non vedi la barra dei preferiti, premi Ctrl + Maiusc + B.</li>
-    <li>Apri una scheda in modifica e premi «Terapia»: se il pulsante non c'è ancora, la finestra lo mostra.</li>
-    <li>Trascina il pulsante verde «Prendi Terapia Trak» nella barra dei preferiti.</li>
+    <li>Se non vedi la barra dei preferiti, premi Ctrl + Maiusc + B: la barra compare sotto l'indirizzo.</li>
+    <li>Apri una scheda in modifica e premi «Terapia»: se il pulsante non c'è ancora, la finestra te lo mostra.</li>
+    <li>Trascina il pulsante verde «Prendi Terapia Trak» nella barra dei preferiti, dove resta.</li>
   </ol>
   <p class="att">Attenzione: se il programma ti chiede di trascinarlo di nuovo, fallo: il segnalibro vecchio non funziona più.</p>
   <figure><img src="img/25-terapia-segnalibro.webp" alt="Installa Prendi Terapia Trak" loading="lazy"><figcaption>La finestra «Installa «Prendi Terapia Trak»».</figcaption></figure>
 </section>
 
-<section class="cap" id="c5-2">
+<section class="cap" id="c5-2" data-modulo="terapia">
   <h3>5.2 Importare la terapia</h3>
-  <p class="serve">Copia nella colonna «Note e terapia» la terapia in corso su TrakCare, divisa per via (EV, OS, SC…).</p>
+  <p class="serve">Copia nella colonna «Note e terapia» la terapia in corso su TrakCare, divisa per via (EV, OS, SC…), senza riscriverla a mano.</p>
   <ol>
-    <li>Su TrakCare apri il paziente: «Terapia» → «Pannello Terapia».</li>
-    <li>Premi il pulsante «Prendi Terapia Trak» nella barra dei preferiti.</li>
-    <li>Torna nelle consegne, apri la scheda dello stesso paziente e premi «Terapia».</li>
-    <li>Controlla l'anteprima e conferma i farmaci da aggiungere.</li>
+    <li>Su TrakCare apri il paziente, poi «Terapia» → «Pannello Terapia».</li>
+    <li>Premi «Prendi Terapia Trak» nella barra dei preferiti: il programma legge la terapia.</li>
+    <li>Torna nelle consegne, apri la scheda dello stesso paziente e premi «Terapia»: compare l'anteprima.</li>
+    <li>Controlla l'anteprima e conferma i farmaci da aggiungere: finiscono nella colonna «Note e terapia».</li>
   </ol>
   <p class="att">Attenzione: il programma controlla che il nome del paziente sia lo stesso. TrakCare resta il riferimento: la terapia nelle consegne è una copia.</p>
   <figure><img src="img/25b-terapia-colonna.webp" alt="La terapia nella colonna Note e terapia" loading="lazy"><figcaption>La terapia importata, con l'avviso se è vecchia di più di 24 ore.</figcaption></figure>
 </section>
 
-<section class="cap" id="c5-3">
+<section class="cap" id="c5-3" data-modulo="laboratorio">
   <h3>5.3 Gli esami: l'alambicco e il promemoria</h3>
-  <p class="serve">Nella colonna degli esami di ogni scheda c'è il riquadro del laboratorio.</p>
+  <p class="serve">Nella colonna degli esami di ogni scheda c'è il riquadro del laboratorio, che porta agli esami del paziente e ricorda quando richiederli.</p>
   <ul>
-    <li>«Visualizza Esami di Laboratorio», con l'alambicco, apre gli esami del paziente.</li>
-    <li>Il riquadro giallo «Richiedere gli esami per domani» ricorda che gli ultimi esami sono vecchi.</li>
+    <li>«Visualizza Esami di Laboratorio», con l'alambicco, apre la finestra degli esami del paziente.</li>
+    <li>Il riquadro giallo «Richiedere gli esami per domani» compare quando gli ultimi esami sono vecchi: ricorda di richiederli.</li>
   </ul>
   <figure><img src="img/26b-lab-alambicco.webp" alt="Il riquadro del laboratorio" loading="lazy"><figcaption>L'alambicco e il promemoria degli esami.</figcaption></figure>
 </section>
 
-<section class="cap" id="c5-4">
+<section class="cap" id="c5-4" data-modulo="laboratorio">
   <h3>5.4 La finestra degli esami e i grafici</h3>
-  <p class="serve">Mostra tutti gli esami del paziente, giorno per giorno, con i valori fuori norma in rosso.</p>
+  <p class="serve">La finestra mostra tutti gli esami del paziente, giorno per giorno, con i valori fuori norma in rosso.</p>
   <ol>
-    <li>Con la scheda aperta premi «Laboratorio», oppure l'alambicco.</li>
-    <li>Cerca un esame con «Ricerca esame», in alto.</li>
-    <li>Premi il piccolo grafico sotto il nome di un esame: si apre l'andamento nel tempo. «Torna alla tabella» per tornare.</li>
-    <li>«Selezione multipla» confronta più esami in un grafico solo.</li>
+    <li>Con la scheda aperta premi «Laboratorio», oppure l'alambicco: si apre la tabella degli esami.</li>
+    <li>Cerca un esame con «Ricerca esame», in alto: la tabella mostra solo quello.</li>
+    <li>Premi il piccolo grafico sotto il nome di un esame: si apre l'andamento nel tempo, e «Torna alla tabella» ti riporta indietro.</li>
+    <li>«Selezione multipla» mette più esami a confronto in un grafico solo.</li>
   </ol>
   <figure><img src="img/27-lab-tabella.webp" alt="La tabella degli esami" loading="lazy"><figcaption>La tabella degli esami.</figcaption></figure>
   <figure><img src="img/28-lab-grafico.webp" alt="Il grafico di un esame" loading="lazy"><figcaption>Il grafico di un esame nel tempo.</figcaption></figure>
 </section>
 
-<section class="cap" id="c5-5">
+<section class="cap" id="c5-5" data-modulo="laboratorio">
   <h3>5.5 Importare gli esami</h3>
-  <p class="serve">Copia gli esami da TrakCare con il segnalibro «Prendi Esami Trak».</p>
+  <p class="serve">Copia gli esami da TrakCare con il segnalibro «Prendi Esami Trak», così la tabella è completa senza ricopiare i valori.</p>
   <ol>
-    <li>La prima volta trascina «Prendi Esami Trak» nella barra dei preferiti (lo mostra la finestra degli esami).</li>
+    <li>La prima volta trascina «Prendi Esami Trak» nella barra dei preferiti: lo mostra la finestra degli esami.</li>
     <li>Su TrakCare apri il paziente e vai in «Laboratorio».</li>
-    <li>Premi il pulsante nella barra dei preferiti e aspetta «Esami copiati».</li>
-    <li>Torna nelle consegne e premi «Aggiorna Esami».</li>
+    <li>Premi il pulsante nella barra dei preferiti e aspetta il messaggio «Esami copiati».</li>
+    <li>Torna nelle consegne e premi «Aggiorna Esami»: gli esami nuovi entrano nella tabella.</li>
   </ol>
   <figure><img src="img/26-lab-segnalibro.webp" alt="Come importare gli esami" loading="lazy"><figcaption>Le istruzioni nella finestra degli esami.</figcaption></figure>
 </section>
 
-<section class="cap" id="c5-6">
+<section class="cap" id="c5-6" data-modulo="laboratorio">
   <h3>5.6 «Imposta allarmi»</h3>
-  <p class="serve">Decide dopo quanti giorni compare il promemoria per richiedere gli esami.</p>
+  <p class="serve">Decide dopo quanti giorni senza esami compare il promemoria per richiederli, letto per letto.</p>
   <ol>
     <li>Nella finestra degli esami premi «Imposta allarmi».</li>
-    <li>Scegli i giorni (1, 2, 3, 5, 7 o un altro numero) e premi «Salva».</li>
+    <li>Scegli i giorni (1, 2, 3, 5, 7 o un altro numero) e premi «Salva»: il promemoria segue la scelta nuova.</li>
     <li>«Usa predefinito» torna al valore della tipologia del letto.</li>
   </ol>
   <figure><img src="img/29-lab-allarmi.webp" alt="Imposta allarmi" loading="lazy"><figcaption>«Ogni quanto richiedere gli esami».</figcaption></figure>
 </section>
 
 <!---->
-<h2 class="capitolo" id="c6">6. Le scale di valutazione</h2>
+<h2 class="capitolo" id="c6" data-modulo="scale">6. Le scale di valutazione</h2>
 
-<section class="cap" id="c6-1">
+<section class="cap" id="c6-1" data-modulo="scale">
   <h3>6.1 Aprire una scala</h3>
-  <p class="serve">Una calcolatrice di scale cliniche (CHA₂DS₂-VASc, HAS-BLED, Wells, qSOFA…).</p>
+  <p class="serve">Le scale sono una calcolatrice di punteggi clinici (CHA₂DS₂-VASc, HAS-BLED, Wells, qSOFA…), con il risultato che si può mettere nella scheda.</p>
   <ol>
-    <li>Apri la scheda in modifica e premi «Scale».</li>
+    <li>Apri la scheda in modifica e premi «Scale»: si apre l'elenco delle scale.</li>
     <li>Cerca la scala per nome, oppure scorri l'elenco diviso per argomento.</li>
-    <li>Tocca la scala che ti serve.</li>
+    <li>Tocca la scala che ti serve: si apre con le sue domande.</li>
   </ol>
   <figure><img src="img/23-scale.webp" alt="L'elenco delle scale" loading="lazy"><figcaption>«Scale di valutazione».</figcaption></figure>
 </section>
 
-<section class="cap" id="c6-2">
+<section class="cap" id="c6-2" data-modulo="scale">
   <h3>6.2 Compilare e mettere il punteggio nella scheda</h3>
-  <p class="serve">Il punteggio si calcola mentre scegli le risposte.</p>
+  <p class="serve">Il punteggio si calcola mentre scegli le risposte, e con un pulsante finisce nella scheda del paziente.</p>
   <ol>
-    <li>Rispondi a ogni voce con i pulsanti («No», «Sì +1»…).</li>
-    <li>Leggi il punteggio e il suo significato in fondo.</li>
+    <li>Rispondi a ogni voce con i pulsanti («No», «Sì +1»…): il punteggio cambia a ogni risposta.</li>
+    <li>Leggi in fondo il punteggio e il suo significato.</li>
     <li>Premi «Inserisci in consegna»: nella scheda compare un riquadro azzurro con scala, data e risultato.</li>
   </ol>
-  <p>«Quando usare», «Perché usare» e «Insidie e note» spiegano la scala.</p>
+  <p>«Quando usare», «Perché usare» e «Insidie e note» spiegano a cosa serve la scala e dove può sbagliare.</p>
   <figure><img src="img/24-scala-compila.webp" alt="Compilare una scala" loading="lazy"><figcaption>Una scala compilata, con «Inserisci in consegna».</figcaption></figure>
 </section>
 
 <!---->
-<h2 class="capitolo" id="c7">7. La mail di dimissione</h2>
+<h2 class="capitolo" id="c7" data-modulo="dimissioni">7. La mail di dimissione</h2>
 
-<section class="cap" id="c7-1">
+<section class="cap" id="c7-1" data-modulo="dimissioni">
   <h3>7.1 Inviare la mail delle dimissioni</h3>
-  <p class="serve">Manda a chi organizza i letti l'elenco delle dimissioni previste per domani.</p>
+  <p class="serve">La mail manda a chi organizza i letti l'elenco delle dimissioni previste per domani, preparato dalle schede.</p>
   <ol>
-    <li>Menu «Letti» → «Invia mail dimissioni».</li>
+    <li>Apri il menu «Letti» e scegli «Invia mail dimissioni».</li>
     <li>Controlla i destinatari e l'oggetto.</li>
-    <li>Spunta i pazienti da includere: quelli con la data gialla sono segnati «Dimissibile».</li>
-    <li>Rileggi l'anteprima: quello che vedi è quello che parte. Premi «Invia» e conferma.</li>
+    <li>Spunta i pazienti da includere: quelli con la data gialla sono segnati «Dimissibile» (<a href="#c2-9">2.9</a>).</li>
+    <li>Rileggi l'anteprima, perché quello che vedi è quello che parte. Premi «Invia» e conferma: la mail parte.</li>
   </ol>
   <p class="att">Attenzione: la mail contiene nomi di pazienti. Controlla bene i destinatari prima di inviare.</p>
   <figure><img src="img/30-mail.webp" alt="Invia mail dimissioni" loading="lazy"><figcaption>«Invia mail dimissioni».</figcaption></figure>
 </section>
 
-<section class="cap" id="c7-2">
+<section class="cap" id="c7-2" data-modulo="dimissioni">
   <h3>7.2 «Impostazioni email» e «Autorizza Google»</h3>
-  <p class="serve">Decide da quale casella parte la mail. Si fa una volta e vale per tutti i PC.</p>
+  <p class="serve">Qui si decide da quale casella parte la mail. Si fa una volta sola e vale per tutti i PC.</p>
   <ol>
     <li>Rotellina → «Impostazioni email».</li>
     <li>Scrivi l'indirizzo della casella Google del reparto e premi «Salva».</li>
-    <li>Se in alto compare il pulsante giallo «Autorizza Google», premilo ed entra con quella casella: serve una volta sola.</li>
+    <li>Se in alto compare il pulsante giallo «Autorizza Google», premilo ed entra con quella casella: da allora la mail parte da lì.</li>
   </ol>
-  <p class="att">Attenzione: usa solo una casella del reparto: una copia di ogni mail resta nella sua posta inviata.</p>
+  <p class="att">Attenzione: usa solo una casella del reparto, perché una copia di ogni mail resta nella sua posta inviata.</p>
   <figure><img src="img/31-impostazioni-email.webp" alt="Impostazioni email" loading="lazy"><figcaption>«Impostazioni email».</figcaption></figure>
 </section>
 
 <!---->
-<h2 class="capitolo" id="c8">8. Numeri Telefono</h2>
+<h2 class="capitolo" id="c8" data-modulo="rubrica">8. Numeri Telefono</h2>
 
-<section class="cap" id="c8-1">
+<section class="cap" id="c8-1" data-modulo="rubrica">
   <h3>8.1 Cercare un numero e chiamare</h3>
-  <p class="serve">La rubrica dei numeri dell'ospedale, dentro le consegne.</p>
+  <p class="serve">«Numeri Telefono» è la rubrica dei numeri dell'ospedale, dentro le consegne. È la stessa per tutto il reparto.</p>
   <ol>
     <li>Premi «Numeri Telefono» nella barra in alto: la rubrica si apre a destra.</li>
-    <li>Scrivi nella ricerca un nome o un numero, oppure tocca una categoria.</li>
-    <li>«A – Z» mostra le iniziali; «Mostra Tutti» torna all'elenco intero.</li>
-    <li>Dal telefono tocca il numero per chiamare.</li>
+    <li>Scrivi nella ricerca un nome o un numero, oppure tocca una categoria: l'elenco si restringe subito.</li>
+    <li>«A – Z» mostra le iniziali, e «Mostra Tutti» torna all'elenco intero.</li>
+    <li>Dal telefono tocca il numero: parte la chiamata.</li>
   </ol>
   <figure><img src="img/45-rubrica.webp" alt="La rubrica Numeri Telefono" loading="lazy"><figcaption>La rubrica (i nomi e i numeri della figura sono di esempio).</figcaption></figure>
 </section>
 
-<section class="cap" id="c8-2">
+<section class="cap" id="c8-2" data-modulo="rubrica">
   <h3>8.2 Aggiungere, modificare, eliminare un contatto</h3>
-  <p class="serve">La rubrica è di tutto il reparto: un contatto aggiunto lo vedono tutti.</p>
+  <p class="serve">La rubrica è di tutto il reparto: un contatto che aggiungi o correggi lo vedono subito tutti.</p>
   <ol>
-    <li>Premi «Nuovo Contatto», oppure la matita accanto a un contatto.</li>
-    <li>Scrivi nome, categoria e numeri; «+ Aggiungi numero» per averne più di uno, con una nota.</li>
-    <li>Premi «Salva». Per eliminare apri il contatto e premi «Elimina».</li>
+    <li>Premi «Nuovo Contatto», oppure la matita accanto a un contatto: si apre la sua scheda.</li>
+    <li>Scrivi nome, categoria e numeri; con «+ Aggiungi numero» ne metti più di uno, ognuno con una nota.</li>
+    <li>Premi «Salva»: il contatto entra nell'elenco. Per eliminarlo apri il contatto e premi «Elimina».</li>
   </ol>
   <p class="att">Attenzione: se un collega ha cambiato lo stesso contatto nel frattempo, il programma te lo dice e non salva.</p>
   <figure><img src="img/46-rubrica-nuovo.webp" alt="Nuovo contatto" loading="lazy"><figcaption>«Nuovo Contatto».</figcaption></figure>
 </section>
 
-<section class="cap" id="c8-3">
+<section class="cap" id="c8-3" data-modulo="rubrica">
   <h3>8.3 Le categorie e l'esportazione</h3>
-  <p class="serve">Le categorie raggruppano i contatti; l'esportazione ne fa una copia in un file.</p>
+  <p class="serve">Le categorie raggruppano i contatti (reparti, servizi…); l'esportazione fa una copia dell'elenco in un file.</p>
   <ol>
-    <li>Premi la rotellina della rubrica, «Gestione categorie».</li>
-    <li>Cambia nome, trascina per riordinare, oppure aggiungine una in «Nuova categoria».</li>
-    <li>Premi «Salva modifiche». «Esporta tutto in CSV» scarica l'elenco in un file per Excel.</li>
+    <li>Premi la rotellina della rubrica e scegli «Gestione categorie».</li>
+    <li>Cambia un nome, trascina per riordinare, oppure aggiungine una in «Nuova categoria».</li>
+    <li>Premi «Salva modifiche»: le categorie cambiano per tutti.</li>
+    <li>«Esporta tutto in CSV» scarica l'elenco in un file che si apre con Excel.</li>
   </ol>
   <figure><img src="img/47-rubrica-categorie.webp" alt="Gestione categorie" loading="lazy"><figcaption>«Gestione Categorie».</figcaption></figure>
 </section>
 
-<section class="cap" id="c8-4">
+<section class="cap" id="c8-4" data-modulo="rubrica">
   <h3>8.4 Il tema chiaro o scuro</h3>
-  <p class="serve">Cambia i colori della rubrica, per esempio di notte sul telefono.</p>
+  <p class="serve">Cambia i colori della rubrica, per esempio per leggerla di notte sul telefono senza abbagliare.</p>
   <ol>
-    <li>Nella rubrica premi il sole (o la luna), in alto a destra.</li>
-    <li>La scelta resta su quel dispositivo.</li>
+    <li>Nella rubrica premi il sole (o la luna), in alto a destra: i colori cambiano subito.</li>
+    <li>La scelta resta su quel dispositivo, e gli altri non cambiano.</li>
   </ol>
   <figure class="telefono"><img src="img/48-rubrica-telefono.webp" alt="La rubrica dal telefono" loading="lazy"><figcaption>In alto: categorie, tema e uscita.</figcaption></figure>
 </section>
 
-<section class="cap" id="c8-5">
+<section class="cap" id="c8-5" data-modulo="rubrica">
   <h3>8.5 La rubrica dal telefono</h3>
-  <p class="serve">Dal telefono si può aprire solo la rubrica, senza le consegne.</p>
+  <p class="serve">Dal telefono si può aprire solo la rubrica, senza le consegne: è comoda per chiamare in giro per l'ospedale.</p>
   <ol>
-    <li>Apri l'icona «Numeri Telefono» sul telefono (vedi 8.6).</li>
-    <li>La prima volta premi «Accedi con Google» con l'account del reparto.</li>
+    <li>Apri l'icona «Numeri Telefono» sul telefono (<a href="#c8-6">8.6</a>).</li>
+    <li>La prima volta premi «Accedi con Google» con l'account del reparto: la rubrica si apre a tutto schermo.</li>
     <li>Per uscire premi l'icona con la freccia, in alto a destra.</li>
   </ol>
   <p class="att">Attenzione: uscendo dalla rubrica esci anche dalle consegne su quel telefono.</p>
   <figure class="telefono"><img src="img/49-accesso-telefono.webp" alt="Accesso alla rubrica dal telefono" loading="lazy"><figcaption>L'accesso alla rubrica dal telefono.</figcaption></figure>
 </section>
 
-<section class="cap" id="c8-6">
+<section class="cap" id="c8-6" data-modulo="rubrica">
   <h3>8.6 Installare l'icona «Numeri Telefono»</h3>
-  <p class="serve">Mette sul telefono un'icona che apre subito la rubrica.</p>
+  <p class="serve">Mette sul telefono un'icona che apre subito la rubrica, come un'app.</p>
   <ol>
     <li>Apri con il telefono l'indirizzo delle consegne seguito da <b>?rubrica=1</b>, ed entra.</li>
-    <li>iPhone (Safari): premi Condividi, poi «Aggiungi alla schermata Home».</li>
-    <li>Android (Chrome): premi i tre puntini, poi «Installa app» o «Aggiungi a schermata Home».</li>
-    <li>Sulla schermata del telefono compare l'icona «Numeri Telefono».</li>
+    <li>Su iPhone (Safari) premi Condividi, poi «Aggiungi alla schermata Home».</li>
+    <li>Su Android (Chrome) premi i tre puntini, poi «Installa app» o «Aggiungi a schermata Home».</li>
+    <li>Sulla schermata del telefono compare l'icona «Numeri Telefono»: toccala per aprire la rubrica.</li>
   </ol>
   <figure class="telefono"><img src="img/48-rubrica-telefono.webp" alt="La rubrica aperta dall'icona" loading="lazy"><figcaption>La rubrica aperta dall'icona.</figcaption></figure>
 </section>
@@ -594,23 +601,23 @@
 
 <section class="cap" id="c9-1">
   <h3>9.1 «Stampa»: le consegne su carta</h3>
-  <p class="serve">Stampa le schede di tutti i letti, o solo di alcune tipologie.</p>
+  <p class="serve">«Stampa» mette su carta le schede di tutti i letti, o solo di alcune tipologie, per esempio per il giro visita.</p>
   <ol>
-    <li>Premi «Stampa» nella barra in alto.</li>
+    <li>Premi «Stampa» nella barra in alto: si aprono le scelte della stampa.</li>
     <li>Scegli la dimensione (100%, 90%, 80%…) e le tipologie da stampare.</li>
     <li>Lascia spuntato «Non stampare letti vuoti»; «Includi scheda NOTE» aggiunge la colonna delle note.</li>
-    <li>Premi «Stampa»: si apre una pagina nuova con l'anteprima.</li>
+    <li>Premi «Stampa»: si apre una pagina nuova con l'anteprima (<a href="#c9-2">9.2</a>).</li>
   </ol>
   <figure><img src="img/32-stampa.webp" alt="Le scelte della stampa" loading="lazy"><figcaption>«Stampa Consegne».</figcaption></figure>
 </section>
 
 <section class="cap" id="c9-2">
   <h3>9.2 L'anteprima e il PDF</h3>
-  <p class="serve">Nell'anteprima vedi le schede come verranno sulla carta.</p>
+  <p class="serve">Nell'anteprima vedi le schede come verranno sulla carta, prima di stampare o di salvare un PDF.</p>
   <ol>
-    <li>Premi «Stampa / Salva PDF», in alto a destra.</li>
-    <li>Scegli la stampante, oppure «Salva come PDF».</li>
-    <li>«Torna all'app» chiude l'anteprima.</li>
+    <li>Premi «Stampa / Salva PDF», in alto a destra: si apre la finestra di stampa del browser.</li>
+    <li>Scegli la stampante, oppure «Salva come PDF» per avere un file.</li>
+    <li>«Torna all'app» chiude l'anteprima e ti riporta alle consegne.</li>
   </ol>
   <p class="att">Attenzione: un foglio stampato contiene dati dei pazienti: non lasciarlo in giro.</p>
   <figure><img src="img/33-anteprima-stampa.webp" alt="L'anteprima di stampa" loading="lazy"><figcaption>L'anteprima, con «Stampa / Salva PDF».</figcaption></figure>
@@ -618,11 +625,11 @@
 
 <section class="cap" id="c9-3">
   <h3>9.3 «Stampa Check List Odierna»</h3>
-  <p class="serve">Stampa la lista delle cose da fare di oggi, letto per letto.</p>
+  <p class="serve">La check list è l'elenco delle cose da fare oggi, letto per letto, da tenere in tasca durante il turno.</p>
   <ol>
-    <li>Menu «Letti» → «Stampa Check List Odierna».</li>
+    <li>Apri il menu «Letti» e scegli «Stampa Check List Odierna».</li>
     <li>Scegli «Verticale» o «Orizzontale».</li>
-    <li>Scegli «Tutti», una tipologia, oppure i singoli letti, e premi «Stampa».</li>
+    <li>Scegli «Tutti», una tipologia oppure i singoli letti, e premi «Stampa»: si apre la pagina da stampare.</li>
   </ol>
   <p class="att">Attenzione: se compare «Popup bloccato», consenti le finestre a comparsa per questo sito nel browser e riprova.</p>
   <figure><img src="img/34b-checklist-scelte.webp" alt="Stampa check list odierna" loading="lazy"><figcaption>«Stampa Check List Odierna».</figcaption></figure>
@@ -633,10 +640,10 @@
 
 <section class="cap" id="c10-1">
   <h3>10.1 «Archivio»: le consegne dei giorni passati</h3>
-  <p class="serve">Il programma copia da solo tutte le consegne una volta all'ora. Le copie si rileggono e si stampano.</p>
+  <p class="serve">Il programma copia da solo tutte le consegne una volta all'ora. Le copie si rileggono e si stampano dall'«Archivio».</p>
   <ol>
-    <li>Premi «Archivio» nella barra in alto.</li>
-    <li>Nel calendario i giorni verdi hanno delle copie: tocca il giorno.</li>
+    <li>Premi «Archivio» nella barra in alto: si apre il calendario.</li>
+    <li>I giorni verdi hanno delle copie: tocca il giorno che ti serve.</li>
     <li>Scegli l'ora della copia: si apre la stampa delle consegne di quel momento.</li>
   </ol>
   <figure><img src="img/35-archivio.webp" alt="Il calendario dell'archivio" loading="lazy"><figcaption>«Archivio Storico Consegne».</figcaption></figure>
@@ -645,24 +652,24 @@
 
 <section class="cap" id="c10-2">
   <h3>10.2 «Esegui Backup Manuale»</h3>
-  <p class="serve">Fa subito una copia in più, per esempio prima di un grosso cambiamento.</p>
+  <p class="serve">Fa subito una copia in più di tutte le consegne, per esempio prima di un grosso cambiamento.</p>
   <ol>
     <li>Rotellina → «Esegui Backup Manuale».</li>
-    <li>Premi «Esegui Backup». La copia compare nell'«Archivio» con l'ora di adesso.</li>
+    <li>Premi «Esegui Backup»: la copia compare nell'«Archivio» con l'ora di adesso.</li>
   </ol>
   <figure><img src="img/36-backup.webp" alt="Backup e ripristino nella rotellina" loading="lazy"><figcaption>«Esegui Backup Manuale» e «Ripristina da Backup».</figcaption></figure>
 </section>
 
 <section class="cap" id="c10-3">
   <h3>10.3 «Ripristina da Backup»</h3>
-  <p class="serve">Rimette le schede com'erano in una copia passata: tutte, o solo alcuni letti.</p>
+  <p class="serve">Rimette le schede com'erano in una copia passata, tutte oppure solo alcuni letti. Serve dopo un errore grosso.</p>
   <ol>
     <li>Rotellina → «Ripristina da Backup».</li>
-    <li>Scegli il giorno, poi l'ora della copia.</li>
+    <li>Scegli il giorno, poi l'ora della copia: compare l'elenco dei letti.</li>
     <li>Spunta i letti da rimettere, oppure «Ripristina tutto».</li>
-    <li>Premi «Ripristina selezionati» e conferma.</li>
+    <li>Premi «Ripristina selezionati» e conferma: le schede tornano com'erano nella copia.</li>
   </ol>
-  <p class="att">Attenzione: i letti ripristinati perdono quello che è stato scritto dopo quella copia. Fai prima un backup manuale.</p>
+  <p class="att">Attenzione: i letti ripristinati perdono quello che è stato scritto dopo quella copia. Fai prima un backup manuale (<a href="#c10-2">10.2</a>).</p>
   <figure><img src="img/36c-ripristina-letti.webp" alt="Scegliere i letti da ripristinare" loading="lazy"><figcaption>La scelta dei letti da ripristinare.</figcaption></figure>
 </section>
 
@@ -671,72 +678,74 @@
   <p class="serve">Decide per quanti giorni si conservano le copie dell'archivio.</p>
   <ol>
     <li>Rotellina → «Impostazioni archivio consegne».</li>
-    <li>Scrivi i giorni di conservazione e premi «Salva».</li>
+    <li>Scrivi i giorni di conservazione e premi «Salva»: la regola vale da subito.</li>
   </ol>
   <p class="att">Attenzione: le copie più vecchie di quei giorni si cancellano da sole e non si recuperano.</p>
   <figure><img src="img/22b-impostazioni-archivio.webp" alt="Impostazioni archivio" loading="lazy"><figcaption>«Giorni di conservazione».</figcaption></figure>
 </section>
 
 <!---->
-<h2 class="capitolo" id="c11">11. Help Desk</h2>
+<h2 class="capitolo" id="c11" data-modulo="aiuto">11. Help Desk</h2>
 
-<section class="cap" id="c11-1">
+<section class="cap" id="c11-1" data-modulo="aiuto">
   <h3>11.1 «Apri un ticket»</h3>
-  <p class="serve">Serve a segnalare un problema o a chiedere una funzione a chi cura il programma.</p>
+  <p class="serve">L'Help Desk serve a segnalare un problema o a chiedere una funzione nuova a chi cura il programma. Le risposte arrivano qui.</p>
   <ol>
     <li>Premi «Help Desk» nella barra in alto, poi «Apri un ticket».</li>
-    <li>Scegli «Segnala un problema» oppure «Chiedi una funzione».</li>
+    <li>Scegli «Segnala un problema» oppure «Chiedi una funzione»: si apre il modulo da compilare (<a href="#c11-2">11.2</a>).</li>
   </ol>
   <p>Per una domanda su come si usa l'app c'è «Leggi la guida», che apre questo manuale (<a href="#c12-5">12.5</a>). Il pallino rosso su «Help Desk» vuol dire che l'assistenza ti ha risposto.</p>
   <figure><img src="img/37-helpdesk-menu.webp" alt="Il menu Help Desk" loading="lazy"><figcaption>«Help Desk»: «Apri un ticket», «Le mie segnalazioni» e «Manuale Utente».</figcaption></figure>
   <figure><img src="img/38-ticket-scelte.webp" alt="Le scelte di «Apri un ticket»" loading="lazy"><figcaption>«Segnala un problema», «Chiedi una funzione» e «Leggi la guida».</figcaption></figure>
 </section>
 
-<section class="cap" id="c11-2">
+<section class="cap" id="c11-2" data-modulo="aiuto">
   <h3>11.2 Descrivere la segnalazione</h3>
+  <p class="serve">Una descrizione chiara fa risolvere prima il problema: che cosa stavi facendo e che cosa è successo.</p>
   <p class="avviso">Non scrivere nomi, cognomi, date di nascita, codici fiscali o altri dati di pazienti.</p>
   <ol>
     <li>In «In poche parole» scrivi il titolo.</li>
-    <li>Rispondi alle domande, almeno a quella obbligatoria: per un problema «Che cosa è successo invece?» e per una funzione «Che problema vuoi risolvere?».</li>
-    <li>Premi «Avanti».</li>
+    <li>Rispondi alle domande, almeno a quella obbligatoria: per un problema «Che cosa è successo invece?», per una funzione «Che problema vuoi risolvere?».</li>
+    <li>Premi «Avanti»: si passa a chi può vederla (<a href="#c11-3">11.3</a>).</li>
   </ol>
   <p>Se il testo somiglia a un dato personale il modulo te lo segnala. Se chiudi a metà, la bozza resta su questo PC per 24 ore.</p>
   <figure><img src="img/39-ticket-descrizione.webp" alt="Descrivere il problema" loading="lazy"><figcaption>«Segnala un problema», con l'avviso sui dati dei pazienti.</figcaption></figure>
 </section>
 
-<section class="cap" id="c11-3">
+<section class="cap" id="c11-3" data-modulo="aiuto">
   <h3>11.3 Chi può vederla e l'invio</h3>
+  <p class="serve">Prima di inviare scegli chi vede la segnalazione e la rileggi tutta.</p>
   <ol>
     <li>Scegli «Solo chi l'ha aperta» oppure «Tutti gli utenti di Consegne, …», con il nome del reparto.</li>
-    <li>Se vuoi essere richiamato, lascia nome e telefono o mail (facoltativo). Premi «Avanti».</li>
-    <li>In «Rivedi e invia» controlla tutto e premi «Invia».</li>
+    <li>Se vuoi essere richiamato lascia nome e telefono o mail (facoltativo), poi premi «Avanti».</li>
+    <li>In «Rivedi e invia» controlla tutto e premi «Invia»: la segnalazione parte e la ritrovi in «Le mie segnalazioni».</li>
   </ol>
-  <p class="att">Attenzione: l'account è del reparto, quindi «solo chi l'ha aperta» vuol dire chiunque entri con quell'account. Con la segnalazione partono anche alcuni dati tecnici (versione, browser, schermo, ultimi errori dell'app: solo tipo e riga): li vedi elencati prima di inviare.</p>
+  <p class="att">Attenzione: l'account è del reparto, quindi «solo chi l'ha aperta» vuol dire chiunque entri con quell'account. Con la segnalazione partono anche alcuni dati tecnici (versione, browser, schermo, ultimi errori dell'app: solo tipo e riga), elencati prima dell'invio.</p>
   <figure><img src="img/39b-ticket-visibilita.webp" alt="Chi può vederla" loading="lazy"><figcaption>«Chi può vederla».</figcaption></figure>
   <figure><img src="img/39c-ticket-rivedi.webp" alt="Rivedi e invia" loading="lazy"><figcaption>«Rivedi e invia».</figcaption></figure>
 </section>
 
-<section class="cap" id="c11-4">
+<section class="cap" id="c11-4" data-modulo="aiuto">
   <h3>11.4 «Le mie segnalazioni»</h3>
-  <p class="serve">Mostra le tue segnalazioni e quelle condivise dai colleghi, con il loro stato.</p>
+  <p class="serve">Qui segui le tue segnalazioni e quelle condivise dai colleghi, con il loro stato: «Ricevuta», «In lavorazione», «Serve una tua risposta», «Risolta: confermi?», «Chiusa».</p>
   <ul>
-    <li>Stati: «Ricevuta», «In lavorazione», «Serve una tua risposta», «Risolta: confermi?», «Chiusa».</li>
-    <li>Apri una segnalazione per leggere e rispondere. «Serve una tua risposta»: rispondi entro 14 giorni, poi si chiude «senza risposta».</li>
-    <li>Su una risolta premi «Sì, è risolta» o «No, non è risolta»; dopo 7 giorni si chiude da sola.</li>
+    <li>Apri una segnalazione per leggerla e rispondere. Se è «Serve una tua risposta», rispondi entro 14 giorni, altrimenti si chiude «senza risposta».</li>
+    <li>Su una risolta premi «Sì, è risolta» o «No, non è risolta»; senza risposta, dopo 7 giorni si chiude da sola.</li>
     <li>«Ritira» c'è finché è «Ricevuta». Una chiusa si riapre scrivendo entro 30 giorni; se è chiusa come doppione o non valida, aprine una nuova.</li>
-    <li>Su una tua condivisa: «Rendila privata». Su quelle dei colleghi: «Serve anche a me».</li>
+    <li>Su una tua condivisa c'è «Rendila privata»; su quelle dei colleghi «Serve anche a me», che dice all'assistenza che il problema tocca anche te.</li>
   </ul>
   <figure><img src="img/39d-ticket-elenco.webp" alt="Le mie segnalazioni" loading="lazy"><figcaption>«Le mie segnalazioni» (titoli di esempio).</figcaption></figure>
 </section>
 
-<section class="cap" id="c11-5">
+<section class="cap" id="c11-5" data-modulo="aiuto">
   <h3>11.5 Senza rete, o con il servizio spento</h3>
+  <p class="serve">Una segnalazione non si perde se la rete manca: aspetta in coda e parte da sola.</p>
   <ul>
     <li>Senza rete la segnalazione resta in coda e «parte appena torna la rete»; «Riprova adesso» la manda subito.</li>
     <li>Una segnalazione in coda che non parte entro 24 ore si cancella.</li>
-    <li>Dopo troppe segnalazioni in un giorno compare «riprova più tardi»: la coda riprova il giorno dopo.</li>
+    <li>Dopo troppe segnalazioni in un giorno compare «riprova più tardi», e la coda riprova il giorno dopo.</li>
     <li>Se compare «Il servizio di assistenza non è attivo per questa installazione», per ora l'Help Desk è spento.</li>
-    <li>«Esci» si ferma se c'è una segnalazione non inviata: inviala o eliminala da Help Desk.</li>
+    <li>«Esci» si ferma se c'è una segnalazione non inviata: inviala o eliminala da Help Desk, poi esci.</li>
   </ul>
   <figure><img src="img/39e-ticket-spento.webp" alt="Servizio non attivo" loading="lazy"><figcaption>Il messaggio del servizio spento.</figcaption></figure>
   <figure class="telefono"><img src="img/51-helpdesk-telefono.webp" alt="Help Desk dal telefono" loading="lazy"><figcaption>L'Help Desk dal telefono.</figcaption></figure>
@@ -747,10 +756,10 @@
 
 <section class="cap" id="c12-1">
   <h3>12.1 «Link Utili»</h3>
-  <p class="serve">I collegamenti che il reparto usa spesso (TrakCare, turni, tabelle…).</p>
+  <p class="serve">«Link Utili» raccoglie i collegamenti che il reparto usa spesso (TrakCare, turni, tabelle…), uguali su tutti i PC.</p>
   <ol>
     <li>Premi «Link Utili» nella barra in alto e tocca un collegamento: si apre in una pagina nuova.</li>
-    <li>Per aggiungerne uno scrivi nome e indirizzo in «Aggiungi link» e premi «Aggiungi».</li>
+    <li>Per aggiungerne uno scrivi nome e indirizzo in «Aggiungi link» e premi «Aggiungi»: compare nell'elenco.</li>
     <li>La matita accanto a un collegamento lo modifica.</li>
   </ol>
   <figure><img src="img/41-link-utili.webp" alt="Link Utili" loading="lazy"><figcaption>«Link Utili».</figcaption></figure>
@@ -758,10 +767,10 @@
 
 <section class="cap" id="c12-2">
   <h3>12.2 «Check Update»</h3>
-  <p class="serve">Chiede subito le impostazioni del reparto, invece di aspettare il prossimo aggiornamento.</p>
+  <p class="serve">«Check Update» chiede subito le impostazioni del reparto, invece di aspettare il prossimo aggiornamento, che arriva entro un'ora.</p>
   <ol>
     <li>Rotellina → «Check Update».</li>
-    <li>Il programma dice se è cambiato qualcosa, per esempio una funzione accesa o spenta.</li>
+    <li>Il programma dice se è cambiato qualcosa, per esempio una funzione accesa o spenta, e la applica subito.</li>
   </ol>
   <figure><img src="img/40-check-update.webp" alt="Check Update nella rotellina" loading="lazy"><figcaption>«Check Update».</figcaption></figure>
   <figure><img src="img/40b-check-update-esito.webp" alt="Esito di Check Update" loading="lazy"><figcaption>«Impostazioni aggiornate».</figcaption></figure>
@@ -769,10 +778,11 @@
 
 <section class="cap" id="c12-3">
   <h3>12.3 «PC OK», l'ora e «Diagnostica Prestazioni»</h3>
+  <p class="serve">In alto a destra due spie dicono se il PC lavora bene e quando ha ricevuto l'ultimo aggiornamento.</p>
   <ul>
-    <li>«PC OK» verde: il PC lavora normalmente. L'ora accanto è l'ultimo aggiornamento ricevuto.</li>
-    <li>Se il PC è lento, la spia diventa «PC LENTO» o «Polling ON»: vedi 13.4.</li>
-    <li>Rotellina → «Diagnostica Prestazioni» fa un controllo del PC. Prima prova a riavviare il browser.</li>
+    <li>«PC OK» verde vuol dire che il PC lavora normalmente; l'ora accanto è l'ultimo aggiornamento ricevuto.</li>
+    <li>Se il PC è lento la spia diventa «PC LENTO» o «Polling ON» (<a href="#c13-4">13.4</a>).</li>
+    <li>Rotellina → «Diagnostica Prestazioni» fa un controllo del PC e dice che cosa fare; prima prova a riavviare il browser.</li>
     <li>Rotellina → «Log» mostra l'elenco degli eventi, utile all'assistenza.</li>
   </ul>
   <figure><img src="img/52-update.webp" alt="Le spie in alto a destra" loading="lazy"><figcaption>Le spie in alto a destra.</figcaption></figure>
@@ -781,10 +791,10 @@
 
 <section class="cap" id="c12-4">
   <h3>12.4 «Esci»</h3>
-  <p class="serve">Scollega il programma da questo dispositivo. Gli altri PC restano collegati.</p>
+  <p class="serve">«Esci» scollega il programma da questo dispositivo; gli altri PC restano collegati. Serve per esempio su un telefono personale.</p>
   <ol>
     <li>Chiudi le schede aperte in modifica.</li>
-    <li>Rotellina → «Esci», poi conferma con «Esci».</li>
+    <li>Rotellina → «Esci», poi conferma con «Esci»: compare la schermata di accesso.</li>
   </ol>
   <p class="att">Attenzione: per rientrare serve di nuovo «Accedi con Google». Sui PC del reparto, di solito, non si esce mai.</p>
   <figure><img src="img/43-esci.webp" alt="Esci" loading="lazy"><figcaption>«Esci», in fondo alla rotellina.</figcaption></figure>
@@ -792,15 +802,15 @@
 
 <section class="cap" id="c12-5">
   <h3>12.5 «Manuale Utente»</h3>
-  <p class="serve">Apre questo manuale senza lasciare le consegne.</p>
+  <p class="serve">Apre questo manuale senza lasciare le consegne. Mostra solo le funzioni attive nel tuo reparto.</p>
   <ol>
-    <li>«Help Desk» → «Manuale Utente», oppure rotellina → «Manuale Utente» (o «Leggi la guida» dentro l'Help Desk).</li>
-    <li>Dal computer si apre in una finestra: la sposti trascinando la barra in alto e la allarghi dall'angolo in basso a destra. Intanto la pagina sotto resta usabile; «×» la chiude.</li>
+    <li>Rotellina → «Manuale Utente»<span data-modulo="aiuto">, oppure «Help Desk» → «Manuale Utente» o «Leggi la guida»</span>: dal computer si apre in una finestra.</li>
+    <li>La finestra si sposta dalla barra in alto e si allarga dall'angolo in basso a destra; la pagina sotto resta usabile, e «×» la chiude.</li>
     <li>A sinistra c'è il menu dei capitoli: «+» mostra i capitoletti e un clic porta alla sezione. La freccia « in alto lo chiude, «☰ Indice» lo riapre.</li>
-    <li>«Cerca nel manuale», la barra in alto: scrivi una o più parole (maiuscole e accenti non contano) e scegli il capitoletto dall'elenco, col mouse o con le frecce e Invio. «/» o Ctrl+F portano nella barra, Esc o la × la svuotano.</li>
+    <li>In «Cerca nel manuale», la barra in alto, scrivi una o più parole (maiuscole e accenti non contano) e scegli il capitoletto dall'elenco. «/» o Ctrl+F portano nella barra, Esc la svuota.</li>
     <li>Ogni immagine si ingrandisce con un clic (sul telefono con un tocco, e lì si allarga con due dita); la chiudono Esc, la × o un clic fuori.</li>
   </ol>
-  <p>Dal telefono il manuale si apre in una nuova scheda del browser. In alto, «Scarica il PDF» lo salva per leggerlo o stamparlo.</p>
+  <p>Dal telefono si apre in una nuova scheda. In alto, «Scarica il PDF» lo salva; se nel reparto qualche funzione è spenta c'è invece «Stampa o salva in PDF», con le sole funzioni attive.</p>
   <figure><img src="img/43c-manuale-finestra.webp" alt="Il Manuale Utente nella sua finestra" loading="lazy"><figcaption>La finestra del manuale, con il menu dei capitoli a sinistra.</figcaption></figure>
   <figure><img src="img/43b-guida-rotellina.webp" alt="Manuale Utente nella rotellina" loading="lazy"><figcaption>«Manuale Utente», nella rotellina.</figcaption></figure>
   <figure class="telefono"><img src="img/43d-manuale-telefono.webp" alt="Il menu del manuale dal telefono" loading="lazy"><figcaption>Dal telefono: il menu dei capitoli, aperto con «☰ Indice».</figcaption></figure>
@@ -811,7 +821,7 @@
 
 <section class="cap" id="c13-1">
   <h3>13.1 Il pulsante «Update»</h3>
-  <p class="serve">Compare in alto quando c'è una versione nuova del programma.</p>
+  <p class="serve">Il pulsante rosso «Update» compare in alto quando c'è una versione nuova del programma.</p>
   <ol>
     <li>Chiudi le schede aperte in modifica.</li>
     <li>Premi «Update»: la pagina si ricarica con la versione nuova.</li>
@@ -822,29 +832,30 @@
 
 <section class="cap" id="c13-2">
   <h3>13.2 «L'applicazione non ha ricevuto la sua configurazione»</h3>
+  <p class="serve">Questo messaggio vuol dire che la pagina si è caricata a metà, di solito nei minuti di un aggiornamento.</p>
   <ul>
-    <li>Capita nei minuti di un aggiornamento: premi «Ricarica».</li>
+    <li>Premi «Ricarica»: la pagina riparte e di solito il messaggio sparisce.</li>
     <li>Se ricompare, aspetta qualche minuto e riprova.</li>
     <li>«Indirizzo non riconosciuto» vuol dire che hai aperto un indirizzo sbagliato: usa il segnalibro delle consegne.</li>
-    <li>Se il messaggio resta, apri un ticket (capitolo 11) o avvisa chi gestisce il programma.</li>
+    <li>Se il messaggio resta, <span data-modulo="aiuto">apri un ticket (capitolo <a href="#c11">11</a>) o </span>avvisa chi gestisce il programma.</li>
   </ul>
   <figure><img src="img/53-configurazione.webp" alt="Configurazione non ricevuta" loading="lazy"><figcaption>Il messaggio, con il pulsante «Ricarica».</figcaption></figure>
 </section>
 
 <section class="cap" id="c13-3">
   <h3>13.3 «Funzione non attiva per questo reparto»</h3>
-  <p class="serve">Alcune funzioni si accendono o si spengono per reparto.</p>
+  <p class="serve">Alcune funzioni si accendono o si spengono per reparto, e questo manuale mostra solo quelle accese.</p>
   <ul>
-    <li>Se una funzione è spenta, il suo pulsante sparisce; se ci arrivi lo stesso, compare questo avviso.</li>
+    <li>Se una funzione è spenta il suo pulsante sparisce; se ci arrivi lo stesso, compare questo avviso.</li>
     <li>Le schede e i dati non si toccano: tornano come prima quando la funzione si riaccende.</li>
-    <li>Dopo un cambio, «Check Update» (12.2) aggiorna subito il PC.</li>
+    <li>Dopo un cambio, «Check Update» (<a href="#c12-2">12.2</a>) aggiorna subito il PC.</li>
   </ul>
   <figure><img src="img/54-non-attiva.webp" alt="Funzione non attiva" loading="lazy"><figcaption>«Funzione non attiva».</figcaption></figure>
 </section>
 
 <section class="cap" id="c13-4">
   <h3>13.4 «PC LENTO» e la modalità emergenza</h3>
-  <p class="serve">Se la rete del PC va a scatti, il programma passa da solo a un modo più prudente.</p>
+  <p class="serve">Se la rete del PC va a scatti, il programma passa da solo a un modo più prudente, e lo dice con la spia in alto.</p>
   <ul>
     <li>Il tuo lavoro si salva normalmente e tutto funziona: stampa, archivio, letti, backup.</li>
     <li>Le modifiche degli altri PC possono arrivare con qualche secondo di ritardo (fino a 30).</li>
@@ -856,8 +867,8 @@
 
 <section class="cap" id="c13-5">
   <h3>13.5 Di nuovo la schermata di accesso</h3>
+  <p class="serve">Se compare «Accedi con Google» su un PC che era collegato, il collegamento è scaduto: basta rientrare.</p>
   <ul>
-    <li>Se compare «Accedi con Google» su un PC che era collegato, il collegamento è scaduto.</li>
     <li>Succede su ogni dispositivo non usato da 30 giorni (un telefono, un PC rimasto spento): per sicurezza il collegamento scade da solo. I PC del reparto sempre accesi restano collegati.</li>
     <li>Premi «Accedi con Google» con l'account del reparto: le consegne tornano come prima.</li>
     <li>Nulla di quello che era salvato si perde.</li>
@@ -867,10 +878,11 @@
 
 <section class="cap" id="c13-6">
   <h3>13.6 «Esci» non parte</h3>
+  <p class="serve">«Esci» si ferma quando uscendo si perderebbe del lavoro, e dice perché.</p>
   <ul>
     <li>«Salvataggio in corso»: c'è una scheda aperta o un salvataggio non finito. Chiudi la scheda, aspetta qualche secondo e riprova.</li>
-    <li>«Rubrica: lavoro non salvato»: in «Numeri Telefono» c'è un contatto non salvato.</li>
-    <li>«Segnalazione non inviata»: in Help Desk c'è una bozza o una segnalazione in coda.</li>
+    <li data-modulo="rubrica">«Rubrica: lavoro non salvato»: in «Numeri Telefono» c'è un contatto non salvato; salvalo o annullalo, poi esci.</li>
+    <li data-modulo="aiuto">«Segnalazione non inviata»: in Help Desk c'è una bozza o una segnalazione in coda; inviala o eliminala, poi esci.</li>
   </ul>
   <figure><img src="img/43-esci.webp" alt="Esci" loading="lazy"><figcaption>«Esci», nella rotellina.</figcaption></figure>
 </section>
@@ -886,7 +898,7 @@
     <li><a href="#c2-10">Allergie</a></li>
     <li><a href="#c2-5">Aggiungi data odierna</a></li>
     <li><a href="#c10-1">Archivio</a></li>
-    <li><a href="#c7-2">Autorizza Google</a></li>
+    <li data-modulo="dimissioni"><a href="#c7-2">Autorizza Google</a></li>
     <li><a href="#c10-2">Backup manuale</a></li>
     <li><a href="#c4-3">Cambia Tipologia</a></li>
     <li><a href="#c12-2">Check Update</a></li>
@@ -899,22 +911,22 @@
     <li><a href="#c2-9">Dimissibile</a></li>
     <li><a href="#c4-4">Elimina Posto Letto</a></li>
     <li><a href="#c12-4">Esci</a></li>
-    <li><a href="#c5-3">Esami di laboratorio</a></li>
+    <li data-modulo="laboratorio"><a href="#c5-3">Esami di laboratorio</a></li>
     <li><a href="#c2-4">Formattazione del testo</a></li>
-    <li><a href="#c11-1">Help Desk</a></li>
-    <li><a href="#c5-6">Imposta allarmi</a></li>
-    <li><a href="#c7-2">Impostazioni email</a></li>
+    <li data-modulo="aiuto"><a href="#c11-1">Help Desk</a></li>
+    <li data-modulo="laboratorio"><a href="#c5-6">Imposta allarmi</a></li>
+    <li data-modulo="dimissioni"><a href="#c7-2">Impostazioni email</a></li>
     <li><a href="#c10-4">Impostazioni archivio</a></li>
-    <li><a href="#c5-2">Importa terapia</a></li>
+    <li data-modulo="terapia"><a href="#c5-2">Importa terapia</a></li>
     <li><a href="#c2-7">Isolamento</a></li>
     <li><a href="#c12-1">Link Utili</a></li>
     <li><a href="#c1-5">Lista Pazienti</a></li>
     <li><a href="#c12-3">Log</a></li>
-    <li><a href="#c7-1">Mail di dimissione</a></li>
+    <li data-modulo="dimissioni"><a href="#c7-1">Mail di dimissione</a></li>
     <li><a href="#c12-5">Manuale Utente</a></li>
     <li><a href="#c4-7">Modifica Nome Consegne</a></li>
     <li><a href="#c2-10">Nome del paziente</a></li>
-    <li><a href="#c8-1">Numeri Telefono</a></li>
+    <li data-modulo="rubrica"><a href="#c8-1">Numeri Telefono</a></li>
     <li><a href="#c4-6">Ordina i letti</a></li>
     <li><a href="#c2-12">Ossigeno</a></li>
     <li><a href="#c3-1">Problemi Attivi</a></li>
@@ -922,7 +934,7 @@
     <li><a href="#c2-8">Rianimazione</a></li>
     <li><a href="#c10-3">Ripristina da Backup</a></li>
     <li><a href="#c2-2">Salva ora</a></li>
-    <li><a href="#c6-1">Scale di valutazione</a></li>
+    <li data-modulo="scale"><a href="#c6-1">Scale di valutazione</a></li>
     <li><a href="#c2-13">Sesso del paziente</a></li>
     <li><a href="#c4-2">Sposta / Scambia</a></li>
     <li><a href="#c9-1">Stampa</a></li>
@@ -938,15 +950,20 @@
   <dl>
     <dt>Scheda in modifica</dt><dd>La scheda aperta a tutto schermo con la matita, l'unico modo per scriverci.</dd>
     <dt>Tipologia</dt><dd>Il tipo di letto (per esempio Medicina, Appoggio, Sub-intensiva), con il suo colore.</dd>
-    <dt>Segnalibro (TrakCare)</dt><dd>Il pulsante nella barra dei preferiti del browser che legge terapia o esami da TrakCare.</dd>
+    <dt data-modulo="terapia laboratorio">Segnalibro (TrakCare)</dt><dd data-modulo="terapia laboratorio">Il pulsante nella barra dei preferiti del browser che legge terapia o esami da TrakCare.</dd>
     <dt>Backup</dt><dd>Una copia di tutte le consegne in un certo momento; ne viene fatta una ogni ora.</dd>
-    <dt>Ticket</dt><dd>Una segnalazione all'assistenza, aperta da Help Desk.</dd>
+    <dt data-modulo="aiuto">Ticket</dt><dd data-modulo="aiuto">Una segnalazione all'assistenza, aperta da Help Desk.</dd>
   </dl>
 </section>
 
-<section class="cap problema">
+<section class="cap problema" data-modulo="aiuto">
   <h3>Hai un problema?</h3>
-  <p>Help Desk → «Apri un ticket» → «Segnala un problema». Scrivi che cosa stavi facendo e che cosa è successo, e indica la versione (1.7).</p>
+  <p>Help Desk → «Apri un ticket» → «Segnala un problema». Scrivi che cosa stavi facendo e che cosa è successo, e indica la versione (<a href="#c1-7">1.7</a>).</p>
+</section>
+
+<section class="cap problema" data-senza-modulo="aiuto" hidden>
+  <h3>Hai un problema?</h3>
+  <p>Avvisa chi gestisce il programma nel reparto: digli che cosa stavi facendo, che cosa è successo e la versione (<a href="#c1-7">1.7</a>).</p>
 </section>
 
 </main>

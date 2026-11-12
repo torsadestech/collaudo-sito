@@ -1,4 +1,6 @@
 /**/
+/**/
+[hidden] { display: none !important; }
 :root {
   --testo: #1f2933;
   --tenue: #52606d;
