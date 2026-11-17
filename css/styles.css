@@ -1627,3 +1627,25 @@ html.manuale-gesto-attivo, html.manuale-gesto-attivo body { user-select: none; -
   background: linear-gradient(135deg, transparent 50%, rgba(55, 71, 79, .55) 50%, rgba(55, 71, 79, .55) 60%, transparent 60%, transparent 70%, rgba(55, 71, 79, .55) 70%, rgba(55, 71, 79, .55) 80%, transparent 80%);
 }
 html.modo-rubrica .manuale-pannello { display: none !important; }
+
+/**/
+.aa-finestra { text-align: left; font-size: 0.92rem; }
+.aa-finestra .aa-spiega { margin: 0 0 8px; line-height: 1.45; }
+.aa-finestra .aa-nota { color: #607d8b; font-size: 0.82rem; margin: 4px 0 8px; }
+.aa-finestra .aa-conta { color: #546e7a; font-size: 0.8rem; margin: 6px 0 4px; }
+.aa-finestra .aa-elenco { list-style: none; padding: 0; margin: 0 0 10px; max-height: 45vh; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 6px; }
+.aa-finestra .aa-riga { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-bottom: 1px solid #eceff1; }
+.aa-finestra .aa-riga:last-child { border-bottom: 0; }
+.aa-finestra .aa-riga.aa-amministratore { background: #fffbea; }
+.aa-finestra .aa-stella { color: #b0bec5; font-size: 1.1rem; line-height: 1; width: 1.2em; text-align: center; flex: none; }
+.aa-finestra .aa-stella.accesa { color: #f2a900; }
+.aa-finestra .aa-email { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.aa-finestra .aa-tu { font-size: 0.7rem; font-weight: 500; }
+.aa-finestra .aa-lucchetto { font-size: 0.85rem; }
+.aa-finestra .aa-azioni { display: flex; gap: 4px; flex: none; }
+.aa-finestra .aa-aggiungi { margin-top: 6px; }
+.aa-finestra .aa-aggiungi .form-label { font-weight: 600; margin-bottom: 4px; font-size: 0.85rem; }
+.aa-finestra .aa-avviso { min-height: 1.2em; margin-top: 8px; font-size: 0.85rem; }
+.aa-finestra .aa-avviso.aa-ok { color: #2e7d32; }
+.aa-finestra .aa-avviso.aa-errore { color: #c62828; }
+.aa-finestra .aa-carico { color: #607d8b; padding: 10px 0; }
