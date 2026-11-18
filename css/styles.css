@@ -1651,7 +1651,9 @@ html.modo-rubrica .manuale-pannello { display: none !important; }
 .aa-finestra .aa-carico { color: #607d8b; padding: 10px 0; }
 
 /**/
-html.non-amministratore .solo-amministratori { display: none !important; }
+html.non-amministratore .solo-amministratori > a::after, html.non-amministratore .solo-amministratori > button::after { content: "\1F512"; margin-left: .4em; font-size: .8em; }
+.aa-avviso-amministratori { list-style: none; padding: 0; margin: 0; }
+.aa-avviso-amministratori li { padding: 6px 10px; border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 6px; overflow-wrap: anywhere; }
 /**/
 .aa-finestra .aa-email .aa-nome { display: block; font-weight: 600; }
 .aa-finestra .aa-email .aa-indirizzo { color: #546e7a; font-size: 0.85rem; }
