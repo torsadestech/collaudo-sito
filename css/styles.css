@@ -1649,3 +1649,12 @@ html.modo-rubrica .manuale-pannello { display: none !important; }
 .aa-finestra .aa-avviso.aa-ok { color: #2e7d32; }
 .aa-finestra .aa-avviso.aa-errore { color: #c62828; }
 .aa-finestra .aa-carico { color: #607d8b; padding: 10px 0; }
+
+/**/
+html.non-amministratore .solo-amministratori { display: none !important; }
+/**/
+.aa-finestra .aa-email .aa-nome { display: block; font-weight: 600; }
+.aa-finestra .aa-email .aa-indirizzo { color: #546e7a; font-size: 0.85rem; }
+.aa-finestra .aa-invisibile { font-size: 0.7rem; }
+.aa-finestra .aa-campi { display: flex; gap: 6px; flex-wrap: wrap; }
+.aa-finestra .aa-campi input { flex: 1 1 180px; min-width: 0; }
